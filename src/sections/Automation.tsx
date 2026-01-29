@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { 
   Bot, 
   Workflow, 
@@ -12,6 +11,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AnimatedCounter } from '@/components/AnimatedCounter';
 
 const automationServices = [
   {
@@ -65,78 +65,35 @@ const stats = [
   { value: 24, suffix: '/7', label: 'Operação Automática' },
 ];
 
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const duration = 2000;
-          const steps = 60;
-          const increment = value / steps;
-          let current = 0;
-          
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= value) {
-              setCount(value);
-              clearInterval(timer);
-            } else {
-              setCount(Math.floor(current));
-            }
-          }, duration / steps);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [value]);
-
-  return (
-    <span ref={ref}>
-      {count}{suffix}
-    </span>
-  );
-}
-
 export function Automation() {
   return (
     <section id="automation" className="py-24 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent/10 rounded-full blur-[120px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[200px]" />
       </div>
 
       {/* Grid pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `linear-gradient(rgba(99, 102, 241, 0.5) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(99, 102, 241, 0.5) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(hsl(var(--primary) / 0.5) 1px, transparent 1px),
+                          linear-gradient(90deg, hsl(var(--primary) / 0.5) 1px, transparent 1px)`,
         backgroundSize: '50px 50px'
       }} />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full mb-6">
-            <Sparkles className="w-4 h-4 text-indigo-400" />
-            <span className="text-indigo-400 text-sm font-medium">Especialização Principal</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-primary text-sm font-medium">Especialização Principal</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
             Automação &{' '}
             <span className="gradient-text">Inteligência Artificial</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
             Transformo negócios através da automação inteligente. Desenvolvo soluções que 
             eliminam tarefas repetitivas, otimizam processos e criam experiências 
             personalizadas usando o poder da IA.
@@ -148,13 +105,13 @@ export function Automation() {
           {stats.map((stat, index) => (
             <div 
               key={index} 
-              className="card-hover bg-slate-900/50 border border-slate-800 rounded-2xl p-6 text-center relative overflow-hidden group"
+              className="card-hover bg-card/50 border border-border rounded-2xl p-6 text-center relative overflow-hidden group"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${index === 0 ? 'from-indigo-500/10' : index === 1 ? 'from-purple-500/10' : index === 2 ? 'from-cyan-500/10' : 'from-emerald-500/10'} to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
               <p className="text-4xl md:text-5xl font-bold gradient-text mb-2 relative">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-slate-400 text-sm relative">{stat.label}</p>
+              <p className="text-muted-foreground text-sm relative">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -164,7 +121,7 @@ export function Automation() {
           {automationServices.map((service, index) => (
             <div 
               key={index}
-              className="card-hover group bg-slate-900/50 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/30 transition-all duration-300 relative overflow-hidden"
+              className="card-hover group bg-card/50 border border-border rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 relative overflow-hidden"
             >
               {/* Gradient background on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
@@ -174,19 +131,19 @@ export function Automation() {
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">
+                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
                 
-                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                   {service.description}
                 </p>
                 
                 <div className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-indigo-400 flex-shrink-0" />
-                      <span className="text-slate-500 text-sm">{feature}</span>
+                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground/70 text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -197,24 +154,24 @@ export function Automation() {
 
         {/* CTA Section */}
         <div className="relative">
-          <div className="bg-gradient-to-r from-indigo-600/20 via-purple-600/20 to-cyan-600/20 border border-indigo-500/20 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+          <div className="bg-gradient-to-r from-primary/20 via-accent/20 to-cyan-600/20 border border-primary/20 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
             {/* Animated background */}
             <div className="absolute inset-0">
-              <div className="absolute top-0 left-1/4 w-64 h-64 bg-indigo-500/20 rounded-full blur-[100px] animate-pulse-glow" />
-              <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
+              <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-[100px] animate-pulse-glow" />
+              <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
             </div>
             
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
-                <Cpu className="w-4 h-4 text-indigo-400" />
-                <span className="text-slate-300 text-sm">Pronto para automatizar?</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-foreground/5 border border-foreground/10 rounded-full mb-6">
+                <Cpu className="w-4 h-4 text-primary" />
+                <span className="text-muted-foreground text-sm">Pronto para automatizar?</span>
               </div>
               
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Vamos criar sua solução de IA
               </h3>
               
-              <p className="text-slate-400 max-w-2xl mx-auto mb-8">
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
                 Cada negócio é único. Vamos conversar sobre seus desafios e criar 
                 uma solução de automação personalizada que vai transformar sua operação.
               </p>
@@ -222,7 +179,7 @@ export function Automation() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-lg rounded-full glow"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-full glow"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Iniciar Projeto
@@ -231,7 +188,7 @@ export function Automation() {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-6 text-lg rounded-full"
+                  className="border-border text-muted-foreground hover:bg-secondary px-8 py-6 text-lg rounded-full"
                   onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Ver Cases de Sucesso

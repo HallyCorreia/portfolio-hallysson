@@ -98,28 +98,29 @@ export function Hero() {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
+        aria-hidden="true"
       />
       
       {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
       <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '0.8s' }} />
       
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         {/* Profile Image */}
         <div className="animate-slide-up opacity-0 mb-8" style={{ animationFillMode: 'forwards' }}>
           <div className="relative inline-block">
-            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-indigo-500/30 mx-auto relative">
+            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary/30 mx-auto relative">
               <img 
                 src="/profile.png" 
-                alt="Hallysson Correia" 
+                alt="Hallysson Correia - Especialista em Automação e IA" 
                 className="w-full h-full object-cover"
               />
             </div>
             {/* Glow ring */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 opacity-30 blur-xl -z-10 scale-110" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-cyan-500 opacity-30 blur-xl -z-10 scale-110" />
             {/* AI Badge */}
-            <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 shadow-lg">
+            <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 shadow-lg">
               <Sparkles className="w-4 h-4" />
               IA Expert
             </div>
@@ -127,7 +128,7 @@ export function Hero() {
         </div>
 
         <div className="animate-slide-up opacity-0 stagger-1" style={{ animationFillMode: 'forwards' }}>
-          <p className="text-indigo-400 font-medium mb-4 tracking-wider uppercase text-sm flex items-center justify-center gap-2">
+          <p className="text-primary font-medium mb-4 tracking-wider uppercase text-sm flex items-center justify-center gap-2">
             <Bot className="w-4 h-4" />
             Especialista em Automação & IA
           </p>
@@ -135,30 +136,30 @@ export function Hero() {
         
         <h1 className="animate-slide-up opacity-0 stagger-1 text-5xl md:text-7xl lg:text-8xl font-bold mb-6" style={{ animationFillMode: 'forwards' }}>
           <span className="gradient-text">Hallysson</span>
-          <span className="text-white"> Correia</span>
+          <span className="text-foreground"> Correia</span>
         </h1>
         
         <div className="animate-slide-up opacity-0 stagger-2" style={{ animationFillMode: 'forwards' }}>
-          <p className="text-xl md:text-2xl text-slate-400 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
             Transformo processos complexos em{' '}
-            <span className="text-indigo-400 font-semibold">soluções inteligentes</span>{' '}
+            <span className="text-primary font-semibold">soluções inteligentes</span>{' '}
             através de automações e Inteligência Artificial
           </p>
         </div>
         
         <div className="animate-slide-up opacity-0 stagger-3" style={{ animationFillMode: 'forwards' }}>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <div className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full">
-              <Zap className="w-4 h-4 text-indigo-400" />
-              <span className="text-slate-300 text-sm">Automação de Processos</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full">
+              <Zap className="w-4 h-4 text-primary" />
+              <span className="text-muted-foreground text-sm">Automação de Processos</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full">
-              <Bot className="w-4 h-4 text-purple-400" />
-              <span className="text-slate-300 text-sm">Agentes de IA</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full">
+              <Bot className="w-4 h-4 text-accent" />
+              <span className="text-muted-foreground text-sm">Agentes de IA</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full">
               <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span className="text-slate-300 text-sm">Integrações Inteligentes</span>
+              <span className="text-muted-foreground text-sm">Integrações Inteligentes</span>
             </div>
           </div>
         </div>
@@ -166,7 +167,7 @@ export function Hero() {
         <div className="animate-slide-up opacity-0 stagger-4 flex flex-col sm:flex-row gap-4 justify-center mb-12" style={{ animationFillMode: 'forwards' }}>
           <Button 
             size="lg" 
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-lg rounded-full glow"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-full glow"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Vamos Automatizar
@@ -174,7 +175,7 @@ export function Hero() {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-slate-700 text-slate-300 hover:bg-slate-800 px-8 py-6 text-lg rounded-full"
+            className="border-border text-muted-foreground hover:bg-secondary px-8 py-6 text-lg rounded-full"
             onClick={() => document.getElementById('automation')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Ver Soluções de IA
@@ -183,10 +184,11 @@ export function Hero() {
         
         <div className="animate-slide-up opacity-0 stagger-5 flex justify-center gap-6" style={{ animationFillMode: 'forwards' }}>
           <a 
-            href="https://github.com" 
+            href="https://github.com/hallyssoncorreia" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-600 transition-all duration-300"
+            className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"
+            aria-label="Visitar GitHub de Hallysson Correia"
           >
             <Github className="w-5 h-5" />
           </a>
@@ -194,13 +196,15 @@ export function Hero() {
             href="https://www.linkedin.com/in/hallysson-correia-722965218" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-600 transition-all duration-300"
+            className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"
+            aria-label="Visitar LinkedIn de Hallysson Correia"
           >
             <Linkedin className="w-5 h-5" />
           </a>
           <a 
             href="mailto:hallysson.correia@email.com" 
-            className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center text-slate-400 hover:text-white hover:bg-indigo-600 transition-all duration-300"
+            className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"
+            aria-label="Enviar email para Hallysson Correia"
           >
             <Mail className="w-5 h-5" />
           </a>
@@ -209,7 +213,8 @@ export function Hero() {
       
       <button 
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-indigo-400 transition-colors animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors animate-bounce"
+        aria-label="Rolar para a seção Sobre"
       >
         <ChevronDown className="w-8 h-8" />
       </button>
