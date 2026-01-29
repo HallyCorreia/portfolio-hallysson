@@ -4,37 +4,79 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #0a0a0f;
-  --foreground: #f8fafc;
-  --card: #12121a;
-  --card-foreground: #f8fafc;
-  --popover: #12121a;
-  --popover-foreground: #f8fafc;
-  --primary: #6366f1;
-  --primary-foreground: #ffffff;
-  --secondary: #1e1e2e;
-  --secondary-foreground: #f8fafc;
-  --muted: #1e1e2e;
-  --muted-foreground: #94a3b8;
-  --accent: #8b5cf6;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --border: #2e2e3e;
-  --input: #2e2e3e;
-  --ring: #6366f1;
-  --chart-1: #6366f1;
-  --chart-2: #8b5cf6;
-  --chart-3: #a855f7;
-  --chart-4: #d946ef;
-  --chart-5: #ec4899;
-  --sidebar: #12121a;
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #6366f1;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1e1e2e;
-  --sidebar-accent-foreground: #f8fafc;
-  --sidebar-border: #2e2e3e;
-  --sidebar-ring: #6366f1;
+  --background: 240 10% 4%;
+  --foreground: 210 40% 98%;
+  --card: 240 10% 8%;
+  --card-foreground: 210 40% 98%;
+  --popover: 240 10% 8%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 10% 15%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 240 10% 15%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 263 70% 58%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --border: 240 10% 20%;
+  --input: 240 10% 20%;
+  --ring: 239 84% 67%;
+  --chart-1: 239 84% 67%;
+  --chart-2: 263 70% 58%;
+  --chart-3: 270 70% 60%;
+  --chart-4: 292 84% 61%;
+  --chart-5: 330 81% 60%;
+  --sidebar: 240 10% 8%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-primary: 239 84% 67%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 10% 15%;
+  --sidebar-accent-foreground: 210 40% 98%;
+  --sidebar-border: 240 10% 20%;
+  --sidebar-ring: 239 84% 67%;
+}
+
+.dark {
+  --background: 240 10% 4%;
+  --foreground: 210 40% 98%;
+  --card: 240 10% 8%;
+  --card-foreground: 210 40% 98%;
+  --popover: 240 10% 8%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 10% 15%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 240 10% 15%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 263 70% 58%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --border: 240 10% 20%;
+  --input: 240 10% 20%;
+  --ring: 239 84% 67%;
+}
+
+.light {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --card: 210 40% 98%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 263 70% 58%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 239 84% 67%;
 }
 
 @layer base {
@@ -55,21 +97,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2e2e3e;
+  background: hsl(var(--border));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366f1;
+  background: hsl(var(--primary));
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(292 84% 61%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -77,7 +119,7 @@
 
 /* Glow effect */
 .glow {
-  box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 40px hsl(var(--primary) / 0.3);
 }
 
 /* Card hover effect */
@@ -87,7 +129,7 @@
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 20px 40px hsl(var(--primary) / 0.15);
 }
 
 /* Animation keyframes */
@@ -154,7 +196,7 @@
 
 /* Glass effect */
 .glass {
-  background: rgba(18, 18, 26, 0.8);
+  background: hsl(var(--card) / 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
