@@ -2,9 +2,9 @@ import { Database, Globe, Server, Shield, Brain, Bot, Sparkles } from 'lucide-re
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 
 const stats = [
-  { value: 7, suffix: '+', label: 'Anos de Experiência' },
-  { value: 500, suffix: '+', label: 'Automações Criadas' },
-  { value: 50, suffix: '+', label: 'Projetos de IA' },
+  { value: 8, suffix: '+', label: 'Anos de Experiência' },
+  { value: 98, suffix: '+', label: 'Automações Criadas' },
+  { value: 25, suffix: '+', label: 'Projetos de IA' },
   { value: 98, suffix: '%', label: 'Satisfação Clientes' },
 ];
 
@@ -78,23 +78,12 @@ export function About() {
         {/* About Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className="relative order-2 lg:order-1">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-border relative group">
-              <img 
-                src="/event.png" 
-                alt="Hallysson Correia apresentando em evento de tecnologia"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            <div className="aspect-[9/16] rounded-3xl overflow-hidden border border-border relative group">
+              <img
+                src="/profile.jpeg"
+                alt="Hallysson Correia"
+                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              
-              {/* Event badge */}
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-4">
-                  <p className="text-primary text-sm font-medium mb-1">Palestrante</p>
-                  <p className="text-foreground font-semibold">Startup Global Forum 2026</p>
-                  <p className="text-muted-foreground text-sm">Compartilhando conhecimento sobre IA e Automação</p>
-                </div>
-              </div>
             </div>
             
             {/* Decorative elements */}
@@ -104,29 +93,37 @@ export function About() {
 
           <div className="space-y-6 order-1 lg:order-2">
             <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-              Especialista em Automação e IA desde 2017
+              Especialista em Automação e IA
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Minha jornada na tecnologia começou em 2017, e desde então venho me especializando 
-              em criar soluções que combinam <strong className="text-foreground">automação inteligente</strong> com 
-              o poder da <strong className="text-foreground">Inteligência Artificial</strong>. 
-              Acredito que a tecnologia deve trabalhar para nós, não o contrário.
+              Iniciei minha trajetória em 2017, atuando em suporte técnico, redes e bancos de dados.
+              Desde então, venho ampliando minha experiência e hoje atuo como{' '}
+              <strong className="text-foreground">Gestor de Automações</strong>, unindo tecnologia,
+              automação e desenvolvimento para entregar resultados estratégicos.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Trabalhei na <strong className="text-foreground">Marvee</strong>, onde desenvolvi automações 
-              que reduziram tarefas manuais em 90% e implementei soluções de IA que transformaram 
-              a operação da empresa. Minha expertise vai desde agentes autônomos até pipelines 
-              de dados inteligentes.
+              Sou apaixonado por transformar processos complexos em soluções simples e eficientes.
+              Nos últimos anos, mergulhei em projetos de{' '}
+              <strong className="text-foreground">desenvolvimento web</strong> e venho me especializando
+              em automações com <strong className="text-foreground">n8n</strong>,{' '}
+              <strong className="text-foreground">IA generativa</strong> e engenharia de prompts.
+              Meu objetivo vai além de resolver problemas: quero gerar confiança, fortalecer equipes
+              e criar valor real para os negócios.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Sou certificado em <strong className="text-foreground">HTML</strong> e no programa 
-              <strong className="text-foreground"> Hackers do Bem</strong> em Cibersegurança, 
-              além de constantemente me atualizar nas mais recentes tecnologias de IA como 
-              GPT, Claude, e frameworks de ML.
+              Um ponto marcante da minha jornada foi enfrentar o diagnóstico de uma deficiência
+              progressiva chamada <strong className="text-foreground">Charcot</strong>. Esse desafio
+              não me limitou, pelo contrário, fortaleceu minha resiliência e reforçou a importância
+              do aprendizado contínuo. Sigo evoluindo e transformando adversidades em oportunidades.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Acredito que a <strong className="text-foreground">tecnologia aplicada de forma estratégica</strong>{' '}
+              impulsiona produtividade e gera impacto positivo. Estou sempre aberto a novos desafios
+              e disposto a contribuir com projetos que façam a diferença.
             </p>
             
             <div className="flex flex-wrap gap-3 pt-4">
-              {['Python', 'JavaScript', 'Automação', 'Machine Learning', 'IA Generativa', 'APIs', 'Banco de Dados'].map((skill) => (
+              {['JavaScript', 'Automação', 'Machine Learning', 'IA Generativa', 'APIs', 'Banco de Dados', 'Lovable', 'Engenharia de Prompt', 'n8n', 'Typebot', 'Web Design', 'SQL', 'Cibersegurança', 'Vibe Coding', 'Frontend', 'Gestão'].map((skill) => (
                 <span 
                   key={skill}
                   className="px-4 py-2 bg-secondary/50 border border-border rounded-full text-sm text-muted-foreground hover:border-primary/30 hover:text-primary transition-colors"

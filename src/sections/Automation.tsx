@@ -59,8 +59,8 @@ const automationServices = [
 ];
 
 const stats = [
-  { value: 500, suffix: '+', label: 'Automações Entregues' },
-  { value: 98, suffix: '%', label: 'Redução de Tarefas Manuais' },
+  { value: 80, suffix: '+', label: 'Automações Entregues' },
+  { value: 88, suffix: '%', label: 'Redução de Tarefas Manuais' },
   { value: 10, suffix: 'x', label: 'Aumento de Produtividade' },
   { value: 24, suffix: '/7', label: 'Operação Automática' },
 ];

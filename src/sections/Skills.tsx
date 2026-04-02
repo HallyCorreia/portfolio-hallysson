@@ -4,41 +4,41 @@ const skillCategories = [
   {
     title: 'Inteligência Artificial',
     skills: [
-      { name: 'OpenAI GPT', level: 95 },
-      { name: 'Claude AI', level: 90 },
-      { name: 'LangChain', level: 85 },
-      { name: 'Machine Learning', level: 80 },
-      { name: 'Prompt Engineering', level: 92 },
+      { name: 'OpenAI GPT', level: 90 },
+      { name: 'Claude AI', level: 88 },
+      { name: 'IA Generativa', level: 85 },
+      { name: 'Engenharia de Prompt', level: 92 },
+      { name: 'Vibe Coding', level: 80 },
     ],
   },
   {
     title: 'Automação & Workflows',
     skills: [
-      { name: 'n8n', level: 95 },
-      { name: 'Make (Integromat)', level: 90 },
-      { name: 'Zapier', level: 88 },
-      { name: 'Python Automation', level: 92 },
-      { name: 'RPA', level: 75 },
+      { name: 'n8n', level: 92 },
+      { name: 'Make (Integromat)', level: 85 },
+      { name: 'Zapier', level: 82 },
+      { name: 'Typebot', level: 88 },
+      { name: 'Lovable', level: 85 },
     ],
   },
   {
-    title: 'Desenvolvimento',
+    title: 'Desenvolvimento & Design',
     skills: [
-      { name: 'Python', level: 90 },
-      { name: 'JavaScript/TypeScript', level: 85 },
-      { name: 'Node.js', level: 80 },
-      { name: 'React', level: 75 },
-      { name: 'APIs RESTful', level: 88 },
+      { name: 'JavaScript/TypeScript', level: 80 },
+      { name: 'HTML & CSS', level: 85 },
+      { name: 'Web Design', level: 82 },
+      { name: 'Frontend', level: 78 },
+      { name: 'APIs RESTful', level: 85 },
     ],
   },
   {
-    title: 'Banco de Dados & Cloud',
+    title: 'Dados, Segurança & Gestão',
     skills: [
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'MongoDB', level: 80 },
-      { name: 'Redis', level: 70 },
-      { name: 'AWS', level: 75 },
-      { name: 'Docker', level: 78 },
+      { name: 'SQL Server', level: 85 },
+      { name: 'PostgreSQL', level: 80 },
+      { name: 'Cibersegurança', level: 75 },
+      { name: 'Gestão de Projetos', level: 82 },
+      { name: 'Suporte Técnico', level: 90 },
     ],
   },
 ];
@@ -138,10 +138,10 @@ export function Skills() {
           <h3 className="text-xl font-semibold text-white mb-6">Tecnologias que domino</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              'OpenAI', 'Claude', 'LangChain', 'Pinecone', 'n8n', 'Make',
-              'Python', 'FastAPI', 'Node.js', 'React', 'TypeScript',
-              'PostgreSQL', 'MongoDB', 'Redis', 'Docker', 'AWS',
-              'Git', 'GitHub Actions', 'REST APIs', 'GraphQL', 'WebSockets'
+              'OpenAI', 'Claude AI', 'IA Generativa', 'Engenharia de Prompt', 'Vibe Coding',
+              'n8n', 'Make', 'Zapier', 'Typebot', 'Lovable',
+              'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Web Design', 'Frontend',
+              'SQL Server', 'PostgreSQL', 'APIs REST', 'Cibersegurança', 'Gestão'
             ].map((tech, index) => (
               <span 
                 key={index}
