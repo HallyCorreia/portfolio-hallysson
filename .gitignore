@@ -1,0 +1,3 @@
+node_modules
+.maestri/
+.vite-dev*.log
