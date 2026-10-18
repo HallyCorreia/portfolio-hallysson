@@ -184,7 +184,7 @@ export function Hero() {
         
         <div className="animate-slide-up opacity-0 stagger-5 flex justify-center gap-6" style={{ animationFillMode: 'forwards' }}>
           <a 
-            href="https://github.com/hallyssoncorreia" 
+            href="https://github.com/HallyCorreia" 
             target="_blank" 
             rel="noopener noreferrer"
             className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"

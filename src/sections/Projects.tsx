@@ -146,7 +146,7 @@ export function Projects() {
             variant="outline" 
             size="lg"
             className="border-border text-muted-foreground hover:bg-secondary hover:text-foreground px-8"
-            onClick={() => window.open('https://github.com/hallyssoncorreia', '_blank')}
+            onClick={() => window.open('https://github.com/HallyCorreia', '_blank')}
             aria-label="Ver mais projetos no GitHub"
           >
             <Github className="w-5 h-5 mr-2" />
