@@ -1,7 +1,47 @@
 import { ExternalLink, Github, Bot, Zap, Brain, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  image: string;
+  cover?: string;
+  tags: string[];
+  icon: typeof Bot;
+  demoUrl: string | null;
+  repoUrl: string | null;
+};
+
+const projects: Project[] = [
+  {
+    title: 'Ninchoo: SaaS para Barbearias e Salões',
+    description: 'Plataforma multiempresa com agendamento online 24h, lembretes automáticos, comissões, assinaturas via Asaas, assistente de IA e app mobile. 37 Edge Functions e 112 testes automatizados.',
+    image: 'gradient-4',
+    cover: '/cases/ninchoo.webp',
+    tags: ['React', 'TypeScript', 'Supabase', 'Capacitor', 'Asaas', 'IA'],
+    icon: Zap,
+    demoUrl: 'https://ninchoo.com.br',
+    repoUrl: 'https://github.com/HallyCorreia/ninchoo-showcase',
+  },
+  {
+    title: 'E-commerce de Autopeças com Agente de IA',
+    description: 'Loja integrada a Mercado Pago e Mercado Livre com agente de IA no WhatsApp: consulta estoque, registra pedidos, entende áudio e usa RAG, com handoff para atendente humano.',
+    image: 'gradient-1',
+    tags: ['TanStack Start', 'Cloudflare Workers', 'Supabase', 'pgvector', 'Claude', 'Mercado Pago'],
+    icon: Bot,
+    demoUrl: null,
+    repoUrl: 'https://github.com/HallyCorreia/ecommerce-autopecas-ia-showcase',
+  },
+  {
+    title: 'Site para Intérprete de Libras',
+    description: 'Site focado em conversão com área administrativa para o cliente gerenciar eventos e portfólio, SEO completo com dados estruturados.',
+    image: 'gradient-2',
+    cover: '/cases/libras.webp',
+    tags: ['React', 'Supabase', 'SEO', 'Playwright'],
+    icon: MessageSquare,
+    demoUrl: 'https://alissonalcantara.com.br',
+    repoUrl: 'https://github.com/HallyCorreia/alisson-alcantara-showcase',
+  },
   {
     title: 'Agente de Atendimento IA',
     description: 'Chatbot inteligente com GPT-4 que atende clientes 24/7, resolve dúvidas complexas e integra-se ao CRM da empresa. Reduziu em 70% o tempo de resposta.',
@@ -78,10 +118,18 @@ export function Projects() {
             >
               {/* Project Image */}
               <div className={`aspect-video bg-gradient-to-br ${gradientStyles[project.image]} relative overflow-hidden`}>
+                {project.cover && (
+                  <img
+                    src={project.cover}
+                    alt={`Tela do projeto ${project.title}`}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                  />
+                )}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                 
                 {/* Icon */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className={`absolute inset-0 flex items-center justify-center ${project.cover ? 'hidden' : ''}`}>
                   <div className="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
                     <project.icon className="w-10 h-10 text-white" aria-hidden="true" />
                   </div>
@@ -98,7 +146,7 @@ export function Projects() {
                           onClick={() => window.open(project.demoUrl!, '_blank')}
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
-                          Ver Demo
+                          Ver no ar
                         </Button>
                       )}
                       {project.repoUrl && (
@@ -109,7 +157,7 @@ export function Projects() {
                           onClick={() => window.open(project.repoUrl!, '_blank')}
                         >
                           <Github className="w-4 h-4 mr-2" />
-                          Código
+                          Estudo de caso
                         </Button>
                       )}
                     </div>
