@@ -112,7 +112,7 @@ export function Hero() {
           <div className="relative inline-block">
             <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary/30 mx-auto relative">
               <img 
-                src="/profile.png" 
+                src="/profile.webp" 
                 alt="Hallysson Correia - Especialista em Automação e IA" 
                 className="w-full h-full object-cover"
               />
