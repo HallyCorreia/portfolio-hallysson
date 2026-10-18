@@ -80,7 +80,7 @@ export function About() {
           <div className="relative order-2 lg:order-1">
             <div className="aspect-[9/16] rounded-3xl overflow-hidden border border-border relative group">
               <img
-                src="/profile.jpeg"
+                src="/profile-about.webp"
                 alt="Hallysson Correia"
                 className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />

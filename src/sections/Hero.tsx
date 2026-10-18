@@ -112,7 +112,7 @@ export function Hero() {
           <div className="relative inline-block">
             <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary/30 mx-auto relative">
               <img 
-                src="/profile.png" 
+                src="/profile.webp" 
                 alt="Hallysson Correia - Especialista em Automação e IA" 
                 className="w-full h-full object-cover"
               />
@@ -184,7 +184,7 @@ export function Hero() {
         
         <div className="animate-slide-up opacity-0 stagger-5 flex justify-center gap-6" style={{ animationFillMode: 'forwards' }}>
           <a 
-            href="https://github.com/hallyssoncorreia" 
+            href="https://github.com/HallyCorreia" 
             target="_blank" 
             rel="noopener noreferrer"
             className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"

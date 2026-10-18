@@ -338,7 +338,7 @@ export function Experience() {
         {/* Coding image banner */}
         <div className="mt-20 relative rounded-3xl overflow-hidden border border-slate-800 h-[480px]">
           <img
-            src="/coding.jpeg"
+            src="/coding.webp"
             alt="Hallysson Correia programando"
             style={{
               position: 'absolute',
