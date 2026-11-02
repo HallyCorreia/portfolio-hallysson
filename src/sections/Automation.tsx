@@ -15,46 +15,46 @@ import { AnimatedCounter } from '@/components/AnimatedCounter';
 
 const automationServices = [
   {
-    icon: Bot,
-    title: 'Agentes de IA Inteligentes',
-    description: 'Desenvolvimento de agentes autônomos capazes de tomar decisões, processar informações e executar tarefas complexas sem intervenção humana.',
-    features: ['Processamento de Linguagem Natural', 'Tomada de Decisão Automática', 'Aprendizado Contínuo', 'Integração Multi-plataforma'],
-    color: 'from-indigo-500 to-purple-600'
-  },
-  {
-    icon: Workflow,
-    title: 'Automação de Workflows',
-    description: 'Criação de fluxos de trabalho automatizados que eliminam tarefas repetitivas e aumentam a produtividade da equipe em até 300%.',
-    features: ['Automação de Processos', 'Integração de Sistemas', 'Triggers Inteligentes', 'Relatórios Automáticos'],
-    color: 'from-purple-500 to-pink-600'
-  },
-  {
     icon: MessageSquare,
-    title: 'Chatbots e Assistentes Virtuais',
-    description: 'Chatbots avançados com IA que compreendem contexto, aprendem com interações e oferecem suporte 24/7 aos seus clientes.',
-    features: ['Compreensão Contextual', 'Respostas Personalizadas', 'Integração com CRM', 'Análise de Sentimento'],
+    title: 'Agentes de IA no WhatsApp',
+    description: 'Atendimento 24h com IA que entende texto, áudio e imagem, consulta seu estoque, registra pedidos e agenda horários, e passa para um humano quando precisa.',
+    features: ['Claude, GPT e Gemini', 'Base de conhecimento (RAG)', 'Ações no seu sistema', 'Handoff para atendente'],
     color: 'from-cyan-500 to-blue-600'
   },
   {
-    icon: Database,
-    title: 'Gestão de Dados com IA',
-    description: 'Soluções inteligentes para coleta, processamento e análise de dados, transformando informações brutas em insights acionáveis.',
-    features: ['ETL Automatizado', 'Data Quality', 'Análise Preditiva', 'Visualização Inteligente'],
-    color: 'from-emerald-500 to-teal-600'
+    icon: Workflow,
+    title: 'Automação de Processos',
+    description: 'Fluxos com n8n e APIs que eliminam tarefas repetitivas: leads, notificações, relatórios, integrações entre ferramentas.',
+    features: ['n8n, Make e Zapier', 'Integração entre sistemas', 'IA dentro do fluxo', 'Monitoramento e logs'],
+    color: 'from-purple-500 to-pink-600'
   },
   {
-    icon: LineChart,
-    title: 'Análise Preditiva',
-    description: 'Modelos de machine learning que preveem tendências, comportamentos e resultados para decisões baseadas em dados.',
-    features: ['Forecasting', 'Segmentação de Clientes', 'Detecção de Anomalias', 'Score de Propensão'],
-    color: 'from-orange-500 to-red-600'
+    icon: Bot,
+    title: 'Sistemas Sob Medida e SaaS',
+    description: 'Plataformas web completas, do banco à interface: agendamento, financeiro, assinaturas e painéis administrativos.',
+    features: ['React + TypeScript', 'Supabase / PostgreSQL', 'Multiempresa com RLS', 'App mobile (Capacitor)'],
+    color: 'from-indigo-500 to-purple-600'
   },
   {
     icon: Code2,
-    title: 'Integrações e APIs',
-    description: 'Desenvolvimento de integrações customizadas entre sistemas, APIs inteligentes e middlewares para conectar toda sua stack tecnológica.',
-    features: ['APIs RESTful', 'Webhooks', 'Middleware', 'Conectores Customizados'],
+    title: 'Sites e Landing Pages',
+    description: 'Sites rápidos e otimizados para conversão, com área administrativa para você mesmo atualizar o conteúdo.',
+    features: ['SEO técnico', 'Painel de conteúdo', 'Analytics e Pixel', 'Foco em conversão'],
     color: 'from-violet-500 to-indigo-600'
+  },
+  {
+    icon: LineChart,
+    title: 'E-commerce e Pagamentos',
+    description: 'Lojas virtuais integradas a meios de pagamento e marketplaces, com gestão de pedidos e estoque.',
+    features: ['Mercado Pago e PIX', 'Mercado Livre', 'Assinaturas recorrentes', 'Webhooks confiáveis'],
+    color: 'from-orange-500 to-red-600'
+  },
+  {
+    icon: Database,
+    title: 'Banco de Dados e Integrações',
+    description: 'Modelagem, otimização e integrações entre sistemas, com a experiência de quem administra bancos de dados desde 2017.',
+    features: ['SQL Server e PostgreSQL', 'APIs REST e webhooks', 'Migração de dados', 'Performance'],
+    color: 'from-emerald-500 to-teal-600'
   }
 ];
 
@@ -87,11 +87,11 @@ export function Automation() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-primary text-sm font-medium">Especialização Principal</span>
+            <span className="text-primary text-sm font-medium">Serviços</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            Automação &{' '}
-            <span className="gradient-text">Inteligência Artificial</span>
+            O que eu{' '}
+            <span className="gradient-text">construo para você</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
             Transformo negócios através da automação inteligente. Desenvolvo soluções que 

@@ -5,7 +5,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 
 const navLinks = [
   { label: 'Sobre', href: '#about' },
-  { label: 'Automação & IA', href: '#automation' },
+  { label: 'Serviços', href: '#automation' },
   { label: 'Experiência', href: '#experience' },
   { label: 'Habilidades', href: '#skills' },
   { label: 'Projetos', href: '#projects' },
