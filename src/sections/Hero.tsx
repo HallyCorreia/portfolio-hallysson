@@ -44,7 +44,7 @@ export function Hero() {
 
     function draw() {
       if (!ctx || !canvas) return;
-      ctx.fillStyle = 'rgba(18, 17, 24, 0.1)';
+      ctx.fillStyle = 'rgba(12, 8, 22, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((p, i) => {
@@ -56,7 +56,7 @@ export function Hero() {
         }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(201, 166, 255, 0.55)';
+        ctx.fillStyle = 'rgba(201, 160, 255, 0.8)';
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -67,7 +67,7 @@ export function Hero() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(201, 166, 255, ${0.18 * (1 - distance / connectionDistance)})`;
+            ctx.strokeStyle = `rgba(201, 166, 255, ${0.3 * (1 - distance / connectionDistance)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -94,13 +94,14 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" aria-hidden="true" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px]" aria-hidden="true" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/15 rounded-full blur-[100px]" aria-hidden="true" />
+      <div className="absolute top-1/4 left-1/4 w-[28rem] h-[28rem] bg-accent/35 rounded-full blur-[130px] animate-pulse-glow" aria-hidden="true" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[110px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} aria-hidden="true" />
+      <div className="absolute top-1/3 right-1/3 w-72 h-72 bg-fuchsia-500/20 rounded-full blur-[110px] animate-pulse-glow" style={{ animationDelay: '0.8s' }} aria-hidden="true" />
 
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <div className="animate-slide-up opacity-0 mb-8" style={{ animationFillMode: 'forwards' }}>
           <div className="relative inline-block">
-            <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-primary/40 mx-auto">
+            <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-primary/60 mx-auto shadow-[0_0_60px_hsl(var(--accent)/0.45)]">
               <img
                 src="/profile.webp"
                 alt="Hallysson Correia"
@@ -110,7 +111,7 @@ export function Hero() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute inset-0 rounded-full bg-primary opacity-20 blur-xl -z-10 scale-110" aria-hidden="true" />
+            <div className="absolute inset-0 rounded-full bg-accent opacity-50 blur-2xl -z-10 scale-110" aria-hidden="true" />
           </div>
         </div>
 
@@ -142,7 +143,7 @@ export function Hero() {
         >
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-full"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-full glow"
             onClick={() => scrollTo('projects')}
           >
             Ver projetos no ar <ArrowRight className="w-5 h-5 ml-1" />

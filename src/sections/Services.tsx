@@ -23,7 +23,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-24 relative border-y border-border/60 bg-card/30">
+    <section id="services" className="py-24 relative border-y border-border/60 bg-accent/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-14 max-w-3xl">
           <p className="font-pixel text-primary uppercase text-sm mb-3">// como eu ajudo</p>
@@ -34,7 +34,7 @@ export function Services() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {services.map(({ icon: Icon, title, text, tools }) => (
-            <div key={title} className="rounded-2xl border border-border bg-background/60 p-6 flex flex-col gap-4">
+            <div key={title} className="card-glow rounded-2xl border border-border bg-card/70 p-6 flex flex-col gap-4">
               <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center">
                 <Icon className="w-6 h-6 text-primary" />
               </div>

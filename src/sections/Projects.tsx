@@ -100,7 +100,7 @@ export function Projects() {
           {projects.map((project, index) => (
             <article
               key={project.title}
-              className="grid lg:grid-cols-2 gap-0 overflow-hidden rounded-2xl border border-border bg-card/50"
+              className="card-glow grid lg:grid-cols-2 gap-0 overflow-hidden rounded-2xl border border-border bg-card/70"
             >
               <div className={`aspect-video lg:aspect-auto lg:min-h-[340px] border-b lg:border-b-0 border-border ${index % 2 ? 'lg:order-2 lg:border-l' : 'lg:border-r'}`}>
                 {project.image ? (

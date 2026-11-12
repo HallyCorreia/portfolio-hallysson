@@ -40,7 +40,7 @@ export function Bastidores() {
               href={`https://www.instagram.com/h_bcorreia/reel/${reel.id}/`}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group relative aspect-[9/16] max-w-full rounded-2xl overflow-hidden border border-border p-4 flex flex-col justify-end gap-3 transition-transform hover:-translate-y-1 ${
+              className={`group relative aspect-[9/16] max-w-full rounded-2xl overflow-hidden border border-border p-4 flex flex-col justify-end gap-3 card-glow ${
                 i % 3 === 1 ? 'bg-primary text-primary-foreground' : 'bg-card text-foreground'
               }`}
             >
