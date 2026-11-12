@@ -236,7 +236,8 @@
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  background: #ff5a5f;
+  background: #22e07a;
+  box-shadow: 0 0 0 3px rgba(34, 224, 122, 0.2), 0 0 10px rgba(34, 224, 122, 0.8);
   animation: rec-blink 1.2s steps(2) infinite;
 }
 
