@@ -1,158 +1,173 @@
-import { ExternalLink, Github, Bot, Zap, Brain, MessageSquare } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ExternalLink, Github } from 'lucide-react';
+import { site } from '@/config/site';
 
-const projects = [
+type Project = {
+  title: string;
+  kind: string;
+  problem: string;
+  delivered: string[];
+  stack: string[];
+  live?: string;
+  repo: string;
+  image?: string;
+};
+
+// Só projetos reais. Os detalhes vêm dos repositórios-vitrine públicos.
+const projects: Project[] = [
   {
-    title: 'Agente de Atendimento IA',
-    description: 'Chatbot inteligente com GPT-4 que atende clientes 24/7, resolve dúvidas complexas e integra-se ao CRM da empresa. Reduziu em 70% o tempo de resposta.',
-    image: 'gradient-1',
-    tags: ['OpenAI GPT-4', 'Node.js', 'PostgreSQL', 'n8n'],
-    icon: Bot,
-    demoUrl: null,
-    repoUrl: null,
+    title: 'Ninchoo',
+    kind: 'SaaS próprio · barbearias e salões',
+    problem:
+      'Barbearias pequenas controlam agenda no WhatsApp e no caderno: cliente falta sem avisar e a comissão é calculada à mão.',
+    delivered: [
+      'Agendamento online 24h, com lembretes por WhatsApp, e-mail e push',
+      'Financeiro com comissão automática e cobrança recorrente via Asaas',
+      'Nix, assistente de IA que atende no chat e captura leads',
+      'App Android/iOS com Capacitor',
+    ],
+    stack: ['React', 'Supabase', 'Edge Functions', 'Asaas', 'Capacitor', 'LLM'],
+    live: 'https://ninchoo.com.br',
+    repo: 'https://github.com/HallyCorreia/ninchoo-showcase',
+    image: '/cases/ninchoo.webp',
   },
   {
-    title: 'Pipeline de Dados Automatizado',
-    description: 'Sistema ETL completo que coleta, processa e analisa dados de múltiplas fontes em tempo real. Gera relatórios automáticos e alertas inteligentes.',
-    image: 'gradient-2',
-    tags: ['Python', 'Apache Airflow', 'AWS', 'Power BI'],
-    icon: Zap,
-    demoUrl: null,
-    repoUrl: null,
+    title: 'Agente de IA para autopeças',
+    kind: 'Cliente · e-commerce em Blumenau',
+    problem:
+      'A loja respondia estoque, pedidos e agendamentos manualmente pelo WhatsApp e vendia em vários canais sem integração.',
+    delivered: [
+      'Agente no WhatsApp com 10 ferramentas: estoque, pedidos, agenda e histórico',
+      'RAG com pgvector, entende áudio e imagem e passa a conversa para um humano',
+      'Loja com checkout Mercado Pago e sincronização com o Mercado Livre',
+      'Claude, Gemini e OpenAI com fallback entre eles',
+    ],
+    stack: ['TanStack Start', 'Cloudflare Workers', 'Supabase', 'pgvector', 'Evolution API'],
+    repo: 'https://github.com/HallyCorreia/ecommerce-autopecas-ia-showcase',
   },
   {
-    title: 'Automação de Processos Internos',
-    description: 'Suite de automações que eliminou 90% das tarefas manuais da operação, desde onboarding de clientes até geração de documentos.',
-    image: 'gradient-3',
-    tags: ['Make', 'Google Apps Script', 'Notion API', 'Slack API'],
-    icon: Brain,
-    demoUrl: null,
-    repoUrl: null,
-  },
-  {
-    title: 'Assistente Virtual de Vendas',
-    description: 'IA que qualifica leads automaticamente, agenda reuniões e envia propostas personalizadas. Aumentou a taxa de conversão em 45%.',
-    image: 'gradient-4',
-    tags: ['LangChain', 'Python', 'FastAPI', 'Twilio'],
-    icon: MessageSquare,
-    demoUrl: null,
-    repoUrl: null,
+    title: 'Alisson Alcântara',
+    kind: 'Cliente · intérprete de Libras',
+    problem:
+      'O intérprete dependia de indicação e não conseguia atualizar o próprio portfólio sem chamar um desenvolvedor.',
+    delivered: [
+      'Site com foco em contato pelo WhatsApp e agenda de eventos',
+      'Painel admin para eventos, fotos e cidades, com permissões no banco',
+      'Páginas por cidade, sitemap e dados estruturados para o Google',
+      'Hospedagem migrada para Cloudflare Pages, sem custo mensal',
+    ],
+    stack: ['React', 'Vite', 'Supabase', 'Cloudflare Pages', 'SEO'],
+    live: 'https://alissonalcantara.com.br',
+    repo: 'https://github.com/HallyCorreia/alisson-alcantara-showcase',
+    image: '/cases/alisson.webp',
   },
 ];
 
-const gradientStyles: Record<string, string> = {
-  'gradient-1': 'from-indigo-500 via-purple-500 to-pink-500',
-  'gradient-2': 'from-emerald-500 via-teal-500 to-cyan-500',
-  'gradient-3': 'from-orange-500 via-red-500 to-pink-500',
-  'gradient-4': 'from-blue-500 via-indigo-500 to-violet-500',
-};
+function AgentPreview() {
+  // Ilustração do fluxo do agente, já que o projeto do cliente não tem tela pública.
+  const lines = [
+    ['cliente', 'tem pastilha de freio pro Onix 2019?'],
+    ['agente', 'consultando estoque…'],
+    ['tool', 'buscar_estoque(veiculo="Onix 2019")'],
+    ['agente', 'Tenho 2 marcas. Quer que eu reserve?'],
+  ];
+  return (
+    <div className="h-full w-full bg-card p-5 font-pixel text-[13px] leading-relaxed flex flex-col justify-center gap-2" aria-hidden="true">
+      {lines.map(([who, text], i) => (
+        <p key={i} className={who === 'cliente' ? 'text-foreground' : who === 'tool' ? 'text-muted-foreground' : 'text-primary'}>
+          <span className="text-muted-foreground">{who === 'tool' ? '$' : '>'} {who}:</span> {text}
+        </p>
+      ))}
+    </div>
+  );
+}
 
 export function Projects() {
   return (
     <section id="projects" className="py-24 relative">
-      {/* Background decoration */}
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-tl from-accent/5 to-transparent" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-primary font-medium mb-2 tracking-wider uppercase text-sm">
-            Portfólio
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Cases de <span className="gradient-text">Automação & IA</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-14 max-w-3xl">
+          <p className="font-pixel text-primary uppercase text-sm mb-3">// projetos no ar</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">
+            O que eu já <span className="gradient-text">coloquei pra rodar</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Projetos reais que demonstram o poder da automação inteligente 
-            e da IA aplicada a negócios.
+          <p className="text-muted-foreground text-lg">
+            Três projetos reais, do problema ao deploy. O código dos clientes é privado. Os links levam para o
+            site no ar e para uma vitrine com arquitetura e decisões técnicas.
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-8">
           {projects.map((project, index) => (
-            <article 
-              key={index}
-              className="card-hover group bg-card/50 border border-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300"
+            <article
+              key={project.title}
+              className="grid lg:grid-cols-2 gap-0 overflow-hidden rounded-2xl border border-border bg-card/50"
             >
-              {/* Project Image */}
-              <div className={`aspect-video bg-gradient-to-br ${gradientStyles[project.image]} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                
-                {/* Icon */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                    <project.icon className="w-10 h-10 text-white" aria-hidden="true" />
-                  </div>
-                </div>
-                
-                {/* Hover overlay */}
-                {(project.demoUrl || project.repoUrl) && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex gap-4">
-                      {project.demoUrl && (
-                        <Button 
-                          size="sm" 
-                          className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white"
-                          onClick={() => window.open(project.demoUrl!, '_blank')}
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Ver Demo
-                        </Button>
-                      )}
-                      {project.repoUrl && (
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          className="border-white/30 text-white hover:bg-white/20"
-                          onClick={() => window.open(project.repoUrl!, '_blank')}
-                        >
-                          <Github className="w-4 h-4 mr-2" />
-                          Código
-                        </Button>
-                      )}
-                    </div>
-                  </div>
+              <div className={`aspect-video lg:aspect-auto lg:min-h-[340px] border-b lg:border-b-0 border-border ${index % 2 ? 'lg:order-2 lg:border-l' : 'lg:border-r'}`}>
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={`Tela do projeto ${project.title}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-left-top"
+                  />
+                ) : (
+                  <AgentPreview />
                 )}
               </div>
-              
-              {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  {project.description}
-                </p>
+
+              <div className="p-6 md:p-8 flex flex-col gap-4 min-w-0">
+                <div>
+                  <p className="font-pixel text-xs uppercase text-muted-foreground mb-1">{project.kind}</p>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-foreground">{project.title}</h3>
+                </div>
+                <p className="text-muted-foreground">{project.problem}</p>
+                <ul className="grid gap-2 text-sm text-foreground/90">
+                  {project.delivered.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="text-primary font-pixel" aria-hidden="true">+</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span 
-                      key={tagIndex}
-                      className="px-3 py-1 bg-secondary text-muted-foreground text-xs rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
-                    >
-                      {tag}
+                  {project.stack.map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-secondary text-muted-foreground text-xs rounded-full">
+                      {tech}
                     </span>
                   ))}
+                </div>
+                <div className="flex flex-wrap gap-3 mt-auto pt-2">
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+                    >
+                      Ver no ar <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <Github className="w-4 h-4" /> Arquitetura
+                  </a>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        {/* View More */}
-        <div className="text-center mt-12">
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-border text-muted-foreground hover:bg-secondary hover:text-foreground px-8"
-            onClick={() => window.open('https://github.com/HallyCorreia', '_blank')}
-            aria-label="Ver mais projetos no GitHub"
-          >
-            <Github className="w-5 h-5 mr-2" />
-            Ver Mais Projetos
-          </Button>
-        </div>
+        <p className="mt-10 text-muted-foreground">
+          Mais projetos e código aberto no{' '}
+          <a href={site.social.github} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4">
+            GitHub
+          </a>
+          .
+        </p>
       </div>
     </section>
   );

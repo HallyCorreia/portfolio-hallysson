@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 const navLinks = [
-  { label: 'Sobre', href: '#about' },
-  { label: 'Automação & IA', href: '#automation' },
-  { label: 'Experiência', href: '#experience' },
-  { label: 'Habilidades', href: '#skills' },
   { label: 'Projetos', href: '#projects' },
+  { label: 'Serviços', href: '#services' },
+  { label: 'Sobre', href: '#about' },
+  { label: 'Trajetória', href: '#experience' },
+  { label: 'Bastidores', href: '#bastidores' },
   { label: 'Contato', href: '#contact' },
 ];
 
@@ -74,10 +74,7 @@ export function Navigation() {
             >
               <span className="text-xl font-bold gradient-text">HC</span>
               <span className="hidden sm:inline text-muted-foreground text-sm">|</span>
-              <span className="hidden sm:inline text-primary text-sm flex items-center gap-1">
-                <Sparkles className="w-3 h-3" />
-                IA Expert
-              </span>
+              <span className="hidden sm:inline font-pixel text-primary text-sm">&gt; automação_</span>
             </a>
 
             {/* Desktop Navigation */}
@@ -106,7 +103,7 @@ export function Navigation() {
                 className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Contratar
+                Falar comigo
               </Button>
             </div>
 
@@ -171,7 +168,7 @@ export function Navigation() {
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Contratar
+              Falar comigo
             </Button>
           </nav>
         </div>
