@@ -98,12 +98,12 @@ export function Navigation() {
                 );
               })}
               <ThemeToggle />
-              <Button 
+              <Button
+                asChild
                 size="sm"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Falar comigo
+                <a href="/solicitar">Solicitar serviço</a>
               </Button>
             </div>
 
@@ -161,14 +161,8 @@ export function Navigation() {
                 </a>
               );
             })}
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Falar comigo
+            <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4">
+              <a href="/solicitar">Solicitar serviço</a>
             </Button>
           </nav>
         </div>

@@ -149,12 +149,12 @@ export function Hero() {
             Ver projetos no ar <ArrowRight className="w-5 h-5 ml-1" />
           </Button>
           <Button
+            asChild
             size="lg"
             variant="outline"
-            className="border-border text-foreground hover:bg-secondary px-8 py-6 text-lg rounded-full"
-            onClick={() => scrollTo('contact')}
+            className="border-primary/40 text-foreground hover:bg-primary/10 px-8 py-6 text-lg rounded-full"
           >
-            Falar comigo
+            <a href="/solicitar">Solicitar serviço</a>
           </Button>
         </div>
 

@@ -69,7 +69,12 @@ export function Contact() {
             Tem um processo que <span className="gradient-text">dá pra automatizar?</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Me conta o que hoje é feito na mão. Respondo com o caminho que eu seguiria e quanto tempo leva.
+            Me conta o que hoje é feito na mão. Respondo com o caminho que eu seguiria e quanto tempo leva. Para um
+            projeto com escopo, prazo e investimento, use a{' '}
+            <a href="/solicitar" className="text-primary font-semibold underline underline-offset-4">
+              área de solicitação de serviço
+            </a>
+            .
           </p>
         </div>
 

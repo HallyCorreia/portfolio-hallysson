@@ -1,5 +1,6 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Send } from 'lucide-react';
 import { site } from '@/config/site';
+import { requestUrl, type ServiceTypeId } from '@/config/services';
 
 type Project = {
   title: string;
@@ -10,6 +11,7 @@ type Project = {
   live?: string;
   repo: string;
   image?: string;
+  requestType: ServiceTypeId;
 };
 
 // Só projetos reais. Os detalhes vêm dos repositórios-vitrine públicos.
@@ -29,6 +31,7 @@ const projects: Project[] = [
     live: 'https://ninchoo.com.br',
     repo: 'https://github.com/HallyCorreia/ninchoo-showcase',
     image: '/cases/ninchoo.webp',
+    requestType: 'website',
   },
   {
     title: 'Agente de IA para autopeças',
@@ -43,6 +46,7 @@ const projects: Project[] = [
     ],
     stack: ['TanStack Start', 'Cloudflare Workers', 'Supabase', 'pgvector', 'Evolution API'],
     repo: 'https://github.com/HallyCorreia/ecommerce-autopecas-ia-showcase',
+    requestType: 'agent',
   },
   {
     title: 'Alisson Alcântara',
@@ -59,6 +63,7 @@ const projects: Project[] = [
     live: 'https://alissonalcantara.com.br',
     repo: 'https://github.com/HallyCorreia/alisson-alcantara-showcase',
     image: '/cases/alisson.webp',
+    requestType: 'website',
   },
 ];
 
@@ -154,6 +159,12 @@ export function Projects() {
                     className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary transition-colors"
                   >
                     <Github className="w-4 h-4" /> Arquitetura
+                  </a>
+                  <a
+                    href={requestUrl(project.requestType, project.title)}
+                    className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10 transition-colors"
+                  >
+                    <Send className="w-4 h-4" /> Quero algo assim
                   </a>
                 </div>
               </div>
