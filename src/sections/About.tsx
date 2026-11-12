@@ -29,13 +29,14 @@ export function About() {
             <div>
               <p className="font-pixel text-primary uppercase text-sm mb-3">// sobre</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-foreground">
-                De suporte técnico a <span className="gradient-text">gestor de automações</span>
+                De suporte técnico a <span className="gradient-text">dev full stack com IA</span>
               </h2>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Comecei em 2017 com suporte técnico, redes e banco de dados. Hoje sou Gestor de Automações na Marvee
-              e atendo clientes por conta própria: automatizo processos, integro sistemas e construo sites e agentes
-              de IA do começo ao deploy.
+              Comecei em 2017 como técnico de suporte em TI, em Sergipe. Passei quase quatro anos como analista de
+              sistemas e consultor de implantação, com muito SQL Server, até chegar à Marvee como Gestor de Automação.
+              Hoje sou Desenvolvedor Full Stack com foco em IA e também atendo clientes: automatizo processos,
+              integro sistemas e construo sites e agentes de IA do começo ao deploy.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               No caminho recebi o diagnóstico de uma deficiência progressiva chamada Charcot. Isso não me

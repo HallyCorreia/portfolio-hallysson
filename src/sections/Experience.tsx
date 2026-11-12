@@ -1,33 +1,52 @@
 import { Briefcase, GraduationCap, Award, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 
+// Fonte: LinkedIn (perfil hallysson-correia-722965218), conferido em 11/2026.
 const experiences = [
   {
     type: 'work',
-    title: 'Gestor de Automações',
+    title: 'Desenvolvedor Full Stack com foco em IA',
     company: 'Marvee',
     location: 'Blumenau, SC',
-    period: '2025 – atual',
-    description: 'Desenvolvimento e gestão das automações e integrações da empresa: agentes de IA, fluxos no n8n e conexão entre os sistemas internos.',
-    skills: ['Automação', 'IA Generativa', 'n8n', 'Python', 'APIs'],
+    period: 'set. 2026 – atual',
+    description: 'Desenvolvimento de aplicações e automações com IA, de ponta a ponta, conectando tecnologia às regras de negócio da empresa.',
+    skills: ['React', 'TypeScript', 'Supabase', 'Claude Code', 'Engenharia de prompt'],
   },
   {
     type: 'work',
-    title: 'Desenvolvedor de Automações',
-    company: 'Freelancer',
-    location: 'Remoto',
-    period: '2020 - 2023',
-    description: 'Desenvolvimento de soluções customizadas de automação para diversos clientes. Criação de chatbots, workflows automatizados e integrações entre plataformas.',
-    skills: ['Make', 'Zapier', 'JavaScript', 'Node.js', 'PostgreSQL'],
+    title: 'Gestor de Automação',
+    company: 'Marvee',
+    location: 'Blumenau, SC',
+    period: 'nov. 2025 – set. 2026',
+    description: 'Automações e agentes de IA para destravar gargalos do dia a dia da operação, com especialização em IA generativa.',
+    skills: ['n8n', 'Agentes de IA', 'IA generativa', 'APIs'],
   },
   {
     type: 'work',
-    title: 'Suporte técnico, redes e banco de dados',
-    company: 'Início da carreira',
-    location: '',
-    period: '2017',
-    description: 'Base em infraestrutura: suporte a usuários, redes e bancos de dados.',
-    skills: ['Redes', 'Banco de dados', 'Suporte'],
+    title: 'Analista de sistema e Consultor de implantação',
+    company: 'Sances',
+    location: 'Blumenau, SC',
+    period: 'jan. 2022 – nov. 2025',
+    description: 'Análise de sistemas e, na fase final, implantação: treinamento de usuários, onboarding de clientes e otimização de processos via SQL Server.',
+    skills: ['SQL Server', 'Análise de sistemas', 'Implantação', 'Análise de dados'],
+  },
+  {
+    type: 'work',
+    title: 'Técnico de suporte em TI',
+    company: 'Sergipe Industrial Têxtil',
+    location: 'Sergipe',
+    period: 'abr. 2018 – ago. 2021',
+    description: 'Suporte técnico e redes LAN/WAN.',
+    skills: ['Redes LAN-WAN', 'Serviços técnicos'],
+  },
+  {
+    type: 'work',
+    title: 'Técnico de suporte em TI',
+    company: 'Peixoto Gonçalves S/A',
+    location: 'Neópolis, SE',
+    period: 'mar. 2017 – abr. 2018',
+    description: 'Início da carreira em TI, com suporte técnico.',
+    skills: ['Suporte técnico'],
   },
 ];
 
