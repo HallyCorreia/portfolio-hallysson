@@ -9,6 +9,7 @@ export const site = {
     github: 'https://github.com/HallyCorreia',
     linkedin: 'https://www.linkedin.com/in/hallysson-correia-722965218',
     instagram: 'https://www.instagram.com/h_bcorreia/',
+    tiktok: 'https://www.tiktok.com/@h_bcorreia',
   },
 };
 

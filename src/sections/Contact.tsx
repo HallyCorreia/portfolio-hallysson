@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { site, mailtoUrl, whatsappUrl } from '@/config/site';
+import { TikTokIcon } from '@/components/TikTokIcon';
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, 'Escreva seu nome (mínimo 2 letras)').max(100, 'Nome muito longo'),
@@ -23,6 +24,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 const socialLinks = [
   { icon: Linkedin, label: 'LinkedIn', href: site.social.linkedin },
   { icon: Instagram, label: 'Instagram', href: site.social.instagram },
+  { icon: TikTokIcon, label: 'TikTok', href: site.social.tiktok },
   { icon: Github, label: 'GitHub', href: site.social.github },
 ];
 

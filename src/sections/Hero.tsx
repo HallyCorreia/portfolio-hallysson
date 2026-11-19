@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Github, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { site } from '@/config/site';
+import { TikTokIcon } from '@/components/TikTokIcon';
 
 const formatClock = (d: Date) => d.toLocaleTimeString('pt-BR', { hour12: false });
 
@@ -89,6 +90,7 @@ export function Hero() {
     { href: site.social.github, label: 'GitHub', icon: Github },
     { href: site.social.linkedin, label: 'LinkedIn', icon: Linkedin },
     { href: site.social.instagram, label: 'Instagram', icon: Instagram },
+    { href: site.social.tiktok, label: 'TikTok', icon: TikTokIcon },
   ];
 
   return (

@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#7A36F0">
 <meta property="og:title" content="Hallysson Correia · Links">
 <meta property="og:description" content="Portfólio, LinkedIn, projetos no ar e contato.">
-<meta property="og:image" content="https://hallyssoncorreia.com/og-image.png">
+<meta property="og:image" content="https://hallyssoncorreia.pages.dev/og-image.png">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--fundo); color: var(--tinta); font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 17px; line-height: 1.55; }
+body { margin: 0; position: relative; isolation: isolate; overflow-x: hidden; background: var(--fundo); color: var(--tinta); font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 17px; line-height: 1.55; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 :focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; border-radius: 6px; }
@@ -53,6 +53,21 @@ a { color: inherit; text-decoration: none; }
 .fx4 { left: 75%; background: linear-gradient(0deg, color-mix(in srgb, var(--d) 45%, var(--a)), var(--a) 80%); }
 .circulo { right: -22%; top: -40%; width: 80%; aspect-ratio: 1; border-radius: 50%; background: linear-gradient(200deg, var(--b), var(--c) 45%, var(--a) 80%); opacity: .8; }
 .luz { left: -30%; bottom: -60%; width: 95%; aspect-ratio: 1; border-radius: 50%; background: var(--c); filter: blur(70px); opacity: .45; }
+/* Animações do fundo: faixas como equalizador, círculo e luz flutuando, manchas suaves no fundo lilás */
+.fx1, .fx2, .fx3, .fx4 { transform-origin: bottom; animation: eq 7s ease-in-out infinite alternate; }
+.fx2 { animation-duration: 9s; animation-delay: -3s; }
+.fx3 { animation-duration: 6s; animation-delay: -1.5s; }
+.fx4 { animation-duration: 10s; animation-delay: -5s; }
+@keyframes eq { 0% { transform: scaleY(1); } 50% { transform: scaleY(.4); } 100% { transform: scaleY(.8); } }
+.circulo { animation: boia 14s ease-in-out infinite alternate; }
+@keyframes boia { to { transform: translate(-14%, 12%) rotate(40deg) scale(1.08); } }
+.luz { animation: deriva 11s ease-in-out infinite alternate; }
+@keyframes deriva { to { transform: translate(35%, -18%) scale(1.15); opacity: .6; } }
+body::before, body::after { content: ""; position: fixed; z-index: -1; width: 70vmax; aspect-ratio: 1; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+body::before { top: -25vmax; left: -30vmax; background: rgba(139, 61, 255, .16); animation: mancha1 22s ease-in-out infinite alternate; }
+body::after { bottom: -30vmax; right: -30vmax; background: rgba(224, 92, 255, .13); animation: mancha2 26s ease-in-out infinite alternate; }
+@keyframes mancha1 { to { transform: translate(28vmax, 30vmax); } }
+@keyframes mancha2 { to { transform: translate(-25vmax, -35vmax); } }
 .rotulo { margin: 0; font-family: var(--pixel); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
 .topo .rotulo { display: flex; align-items: center; gap: 8px; opacity: .95; }
 .rec { width: 8px; height: 8px; border-radius: 50%; background: #22E07A; box-shadow: 0 0 0 3px rgba(34,224,122,.25), 0 0 10px rgba(34,224,122,.9); animation: pisca 1.2s steps(2) infinite; }
@@ -75,6 +90,11 @@ a { color: inherit; text-decoration: none; }
 .ico.instagram { background: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF); }
 .ico.github { background: #1F1B2B; }
 .ico.email { background: var(--b); color: var(--e); }
+.ico.tiktok { background: #000; }
+.ico.youtube { background: #FF0000; }
+.embreve { cursor: default; opacity: .72; }
+.embreve:hover { transform: none; box-shadow: 0 16px 32px -24px rgba(21,15,34,.45); }
+.selo { font-family: var(--pixel); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--e); background: var(--linha); padding: 4px 8px; border-radius: 999px; flex-shrink: 0; }
 .item-texto { flex: 1; min-width: 0; display: grid; }
 .item-texto b { font-size: 16px; font-weight: 700; line-height: 1.3; }
 .item-texto small { color: var(--suave); font-size: 14px; overflow-wrap: anywhere; }
@@ -99,7 +119,7 @@ a { color: inherit; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .item { animation: none; }
-  .rec { animation: none; }
+  .rec, .faixas span, body::before, body::after { animation: none; }
 }
 </style>
 </head>
@@ -130,7 +150,7 @@ a { color: inherit; text-decoration: none; }
         <span class="item-texto">
           <span class="k">Portfólio</span>
           <b>Projetos no ar, serviços e contato</b>
-          <small>hallyssoncorreia.com</small>
+          <small>hallyssoncorreia.pages.dev</small>
         </span>
         <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
       </span>
@@ -141,7 +161,15 @@ a { color: inherit; text-decoration: none; }
       </span>
     </a>
 
-    <a class="item" href="https://www.linkedin.com/in/hallysson-correia-722965218" target="_blank" rel="noopener" style="--i:1">
+    <a class="item" href="https://www.tiktok.com/@h_bcorreia" target="_blank" rel="noopener" style="--i:1">
+      <span class="ico tiktok" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.73 5.73 0 0 0-.77-.05 5.69 5.69 0 0 0-5.69 5.69A5.69 5.69 0 0 0 9.86 21a5.69 5.69 0 0 0 5.69-5.69V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48Z"/></svg>
+      </span>
+      <span class="item-texto"><b>TikTok</b><small>@h_bcorreia · vídeos curtos</small></span>
+      <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+
+    <a class="item" href="https://www.linkedin.com/in/hallysson-correia-722965218" target="_blank" rel="noopener" style="--i:2">
       <span class="ico linkedin" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.91h-4v-11Z"/></svg>
       </span>
@@ -149,7 +177,7 @@ a { color: inherit; text-decoration: none; }
       <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
     </a>
 
-    <a class="item" href="mailto:desenvolvimentohcweb@gmail.com?subject=Vim%20pelo%20Instagram" style="--i:2">
+    <a class="item" href="mailto:desenvolvimentohcweb@gmail.com?subject=Vim%20pelo%20Instagram" style="--i:3">
       <span class="ico email" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
       </span>
@@ -157,7 +185,7 @@ a { color: inherit; text-decoration: none; }
       <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
     </a>
 
-    <a class="item" href="https://github.com/HallyCorreia" target="_blank" rel="noopener" style="--i:3">
+    <a class="item" href="https://github.com/HallyCorreia" target="_blank" rel="noopener" style="--i:4">
       <span class="ico github" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
       </span>
@@ -165,9 +193,9 @@ a { color: inherit; text-decoration: none; }
       <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
     </a>
 
-    <p class="rotulo secao" style="--i:4">Projetos no ar</p>
+    <p class="rotulo secao" style="--i:5">Projetos no ar</p>
 
-    <a class="item" href="https://ninchoo.com.br" target="_blank" rel="noopener" style="--i:5">
+    <a class="item" href="https://ninchoo.com.br" target="_blank" rel="noopener" style="--i:6">
       <span class="ico portfolio" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       </span>
@@ -175,13 +203,23 @@ a { color: inherit; text-decoration: none; }
       <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
     </a>
 
-    <a class="item" href="https://alissonalcantara.com.br" target="_blank" rel="noopener" style="--i:6">
+    <a class="item" href="https://alissonalcantara.com.br" target="_blank" rel="noopener" style="--i:7">
       <span class="ico portfolio" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
       </span>
       <span class="item-texto"><b>Alisson Alcântara</b><small>Site e painel de intérprete de Libras</small></span>
       <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
     </a>
+
+    <p class="rotulo secao" style="--i:8">Em breve</p>
+
+    <div class="item embreve" aria-disabled="true" style="--i:9">
+      <span class="ico youtube" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/></svg>
+      </span>
+      <span class="item-texto"><b>YouTube</b><small>Canal chegando: vídeos longos dos bastidores</small></span>
+      <span class="selo">Em breve</span>
+    </div>
   </main>
 
   <footer class="pe"><p class="rotulo"><i class="barras" aria-hidden="true">///</i>automação &amp; IA aplicada</p></footer>
