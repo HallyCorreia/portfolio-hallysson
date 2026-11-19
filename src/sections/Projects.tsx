@@ -9,7 +9,7 @@ type Project = {
   delivered: string[];
   stack: string[];
   live?: string;
-  repo: string;
+  repo?: string;
   image?: string;
   requestType: ServiceTypeId;
 };
@@ -65,6 +65,38 @@ const projects: Project[] = [
     image: '/cases/alisson.webp',
     requestType: 'website',
   },
+  {
+    title: 'Simulado Legal',
+    kind: 'Projeto próprio · concursos públicos',
+    problem:
+      'Quem estuda para concurso resolve questão solta e não sabe em que matéria está errando mais.',
+    delivered: [
+      'Simulados prontos (revisão rápida, prova completa, gramática, legislação) e montador personalizado',
+      'Modos aleatório, por categoria e misto, com feedback na hora',
+      'Estatísticas de evolução, desempenho por categoria e badges',
+      'Coach de estudos com IA (Gemini) que aponta pontos fortes e de melhoria',
+    ],
+    stack: ['React', 'Supabase', 'Edge Functions', 'Gemini', 'Recharts'],
+    live: 'https://simulado-legal.lovable.app',
+    image: '/cases/simulado.webp',
+    requestType: 'website',
+  },
+  {
+    title: 'Correia do Nordeste',
+    kind: 'Criador de conteúdo · link na bio',
+    problem:
+      'O criador precisava de uma página única que juntasse TikTok, Instagram, YouTube e WhatsApp com a cara do canal.',
+    delivered: [
+      'Página de links com a identidade do canal "Do Sertão ao Sul"',
+      'Carrossel com os vídeos em destaque',
+      'Botões para as redes e WhatsApp flutuante para contato',
+      'Espaço para anunciante ("Seu negócio aqui")',
+    ],
+    stack: ['HTML', 'CSS', 'JavaScript', 'Firebase Hosting'],
+    live: 'https://chave-b2b1b.web.app',
+    image: '/cases/correia.webp',
+    requestType: 'website',
+  },
 ];
 
 function AgentPreview() {
@@ -96,8 +128,8 @@ export function Projects() {
             O que eu já <span className="gradient-text">coloquei pra rodar</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Três projetos reais, do problema ao deploy. O código dos clientes é privado. Os links levam para o
-            site no ar e para uma vitrine com arquitetura e decisões técnicas.
+            Projetos reais, do problema ao deploy. O código dos clientes é privado. Os links levam para o
+            site no ar e, quando existe, para uma vitrine com arquitetura e decisões técnicas.
           </p>
         </div>
 
@@ -152,6 +184,7 @@ export function Projects() {
                       Ver no ar <ExternalLink className="w-4 h-4" />
                     </a>
                   )}
+                  {project.repo && (
                   <a
                     href={project.repo}
                     target="_blank"
@@ -160,6 +193,7 @@ export function Projects() {
                   >
                     <Github className="w-4 h-4" /> Arquitetura
                   </a>
+                  )}
                   <a
                     href={requestUrl(project.requestType, project.title)}
                     className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10 transition-colors"
