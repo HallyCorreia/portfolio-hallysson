@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/ThemeToggle';
 
 const navLinks = [
   { label: 'Projetos', href: '#projects' },
   { label: 'Serviços', href: '#services' },
   { label: 'Sobre', href: '#about' },
   { label: 'Trajetória', href: '#experience' },
-  { label: 'Bastidores', href: '#bastidores' },
+  { label: 'Conteúdo', href: '#bastidores' },
   { label: 'Contato', href: '#contact' },
 ];
 
@@ -97,7 +96,6 @@ export function Navigation() {
                   </a>
                 );
               })}
-              <ThemeToggle />
               <Button
                 asChild
                 size="sm"
@@ -109,7 +107,6 @@ export function Navigation() {
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-2 md:hidden">
-              <ThemeToggle />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"

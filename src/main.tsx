@@ -12,7 +12,7 @@ const Page = path === '/solicitar' ? RequestPage : App
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
       <Page />
       <Toaster position="top-right" />
     </ThemeProvider>
