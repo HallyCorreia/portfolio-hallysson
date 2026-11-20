@@ -2,7 +2,7 @@
 
 Site pessoal de Hallysson Correia: automação de processos, IA, infraestrutura e desenvolvimento web.
 
-🔗 https://hallyssoncorreia.com
+🔗 https://hallyssoncorreia.com.br
 
 ## Stack
 

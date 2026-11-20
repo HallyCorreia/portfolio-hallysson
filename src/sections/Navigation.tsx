@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/ThemeToggle';
 
 const navLinks = [
-  { label: 'Sobre', href: '#about' },
-  { label: 'Automação & IA', href: '#automation' },
-  { label: 'Experiência', href: '#experience' },
-  { label: 'Habilidades', href: '#skills' },
   { label: 'Projetos', href: '#projects' },
+  { label: 'Serviços', href: '#services' },
+  { label: 'Sobre', href: '#about' },
+  { label: 'Trajetória', href: '#experience' },
+  { label: 'Conteúdo', href: '#bastidores' },
   { label: 'Contato', href: '#contact' },
 ];
 
@@ -74,10 +73,7 @@ export function Navigation() {
             >
               <span className="text-xl font-bold gradient-text">HC</span>
               <span className="hidden sm:inline text-muted-foreground text-sm">|</span>
-              <span className="hidden sm:inline text-primary text-sm flex items-center gap-1">
-                <Sparkles className="w-3 h-3" />
-                IA Expert
-              </span>
+              <span className="hidden sm:inline font-pixel text-primary text-sm">&gt; automação_</span>
             </a>
 
             {/* Desktop Navigation */}
@@ -100,19 +96,17 @@ export function Navigation() {
                   </a>
                 );
               })}
-              <ThemeToggle />
-              <Button 
+              <Button
+                asChild
                 size="sm"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Contratar
+                <a href="/solicitar">Solicitar serviço</a>
               </Button>
             </div>
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-2 md:hidden">
-              <ThemeToggle />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
@@ -164,14 +158,8 @@ export function Navigation() {
                 </a>
               );
             })}
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Contratar
+            <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4">
+              <a href="/solicitar">Solicitar serviço</a>
             </Button>
           </nav>
         </div>

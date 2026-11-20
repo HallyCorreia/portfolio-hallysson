@@ -1,0 +1,38 @@
+# Hallysson Correia
+
+> Hallysson Correia é Desenvolvedor Full Stack com foco em IA, baseado em Blumenau (SC), Brasil. Faz automação de processos, agentes de IA no WhatsApp e sites e sistemas com painel, com projetos reais no ar. Atende de forma remota.
+
+Contato: desenvolvimentohcweb@gmail.com · Instagram e TikTok @h_bcorreia · LinkedIn: https://www.linkedin.com/in/hallysson-correia-722965218 · GitHub: https://github.com/HallyCorreia
+
+## Páginas
+
+- [Portfólio](https://hallyssoncorreia.com.br/): projetos, serviços, trajetória, vídeos e contato.
+- [Solicitar serviço](https://hallyssoncorreia.com.br/solicitar): formulário de orçamento (automação, agente de IA, site ou sistema, consultoria).
+- [Links](https://hallyssoncorreia.com.br/links/): todos os links do Hallysson Correia.
+
+## Serviços
+
+- Automação de processos: planilhas, integrações e n8n.
+- Agentes de IA no WhatsApp: atendimento, vendas e agenda.
+- Sites e sistemas com painel: site, SaaS e área administrativa.
+- Consultoria: diagnóstico e plano de IA para empresas.
+
+## Projetos
+
+- Ninchoo (SaaS próprio para barbearias e salões): https://ninchoo.com.br
+- Agente de IA para autopeças (cliente, e-commerce em Blumenau).
+- Alisson Alcântara (cliente, intérprete de Libras): https://alissonalcantara.com.br
+- Simulado Legal (projeto próprio, concursos públicos).
+- Correia do Nordeste (criador de conteúdo, página de links).
+
+## Trajetória
+
+- Marvee, Blumenau/SC: Desenvolvedor Full Stack com foco em IA (set. 2026 – atual); Gestor de Automação (nov. 2025 – set. 2026).
+- Sances, Blumenau/SC: Analista de sistema e Consultor de implantação (jan. 2022 – nov. 2025).
+- Sergipe Industrial Têxtil: Técnico de suporte em TI (abr. 2018 – ago. 2021).
+- Peixoto Gonçalves S/A, Neópolis/SE: Técnico de suporte em TI (mar. 2017 – abr. 2018).
+- Formação: Engenharia de Software (GRAN), em andamento.
+
+## Conteúdo
+
+Vídeos curtos no Instagram e no TikTok (@h_bcorreia): "Trabalhe comigo" (expediente real acelerado), "Dicas do Nodo" (dica diária de IA com o agente Nodo), "IA em pauta" (opinião sobre notícias de IA) e automação e ferramentas.

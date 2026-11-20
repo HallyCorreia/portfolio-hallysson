@@ -1,220 +1,185 @@
-import { useEffect, useRef } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Sparkles, Bot, Zap } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ChevronDown, Github, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { site } from '@/config/site';
+import { TikTokIcon } from '@/components/TikTokIcon';
+
+const formatClock = (d: Date) => d.toLocaleTimeString('pt-BR', { hour12: false });
+
+const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
 export function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [clock, setClock] = useState(() => formatClock(new Date()));
+
+  useEffect(() => {
+    const id = window.setInterval(() => setClock(formatClock(new Date())), 1000);
+    return () => window.clearInterval(id);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    
     handleResize();
 
-    const particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-    }> = [];
-
-    const particleCount = 80;
+    const particleCount = window.innerWidth < 640 ? 40 : 80;
     const connectionDistance = 150;
+    const particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      radius: Math.random() * 2 + 1,
+    }));
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1,
-      });
-    }
+    let animationId = 0;
 
-    let animationId: number;
-
-    function animate() {
+    function draw() {
       if (!ctx || !canvas) return;
-      
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
+      ctx.fillStyle = 'rgba(12, 8, 22, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach((particle, i) => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
+      particles.forEach((p, i) => {
+        if (!reduceMotion) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        }
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(99, 102, 241, 0.6)';
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(201, 160, 255, 0.8)';
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[j].x - particle.x;
-          const dy = particles[j].y - particle.y;
+          const dx = particles[j].x - p.x;
+          const dy = particles[j].y - p.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-
           if (distance < connectionDistance) {
             ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
+            ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 * (1 - distance / connectionDistance)})`;
+            ctx.strokeStyle = `rgba(201, 166, 255, ${0.3 * (1 - distance / connectionDistance)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
       });
 
-      animationId = requestAnimationFrame(animate);
+      if (!reduceMotion) animationId = requestAnimationFrame(draw);
     }
 
-    animate();
-
+    draw();
     window.addEventListener('resize', handleResize);
-
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const socials = [
+    { href: site.social.github, label: 'GitHub', icon: Github },
+    { href: site.social.linkedin, label: 'LinkedIn', icon: Linkedin },
+    { href: site.social.instagram, label: 'Instagram', icon: Instagram },
+    { href: site.social.tiktok, label: 'TikTok', icon: TikTokIcon },
+  ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0"
-        aria-hidden="true"
-      />
-      
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
-      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '0.8s' }} />
-      
-      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-        {/* Profile Image */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
+      <canvas ref={canvasRef} className="absolute inset-0 z-0" aria-hidden="true" />
+      <div className="absolute top-1/4 left-1/4 w-[28rem] h-[28rem] bg-accent/35 rounded-full blur-[130px] animate-pulse-glow" aria-hidden="true" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[110px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} aria-hidden="true" />
+      <div className="absolute top-1/3 right-1/3 w-72 h-72 bg-fuchsia-500/20 rounded-full blur-[110px] animate-pulse-glow" style={{ animationDelay: '0.8s' }} aria-hidden="true" />
+
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <div className="animate-slide-up opacity-0 mb-8" style={{ animationFillMode: 'forwards' }}>
           <div className="relative inline-block">
-            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary/30 mx-auto relative">
-              <img 
-                src="/profile.webp" 
-                alt="Hallysson Correia - Especialista em Automação e IA" 
+            <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-primary/60 mx-auto shadow-[0_0_60px_hsl(var(--accent)/0.45)]">
+              <img
+                src="/profile.webp"
+                alt="Hallysson Correia"
+                width={176}
+                height={176}
+                fetchPriority="high"
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* Glow ring */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-cyan-500 opacity-30 blur-xl -z-10 scale-110" />
-            {/* AI Badge */}
-            <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 shadow-lg">
-              <Sparkles className="w-4 h-4" />
-              IA Expert
-            </div>
+            <div className="absolute inset-0 rounded-full bg-accent opacity-50 blur-2xl -z-10 scale-110" aria-hidden="true" />
           </div>
         </div>
 
-        <div className="animate-slide-up opacity-0 stagger-1" style={{ animationFillMode: 'forwards' }}>
-          <p className="text-primary font-medium mb-4 tracking-wider uppercase text-sm flex items-center justify-center gap-2">
-            <Bot className="w-4 h-4" />
-            Especialista em Automação & IA
-          </p>
+        <div className="animate-slide-up opacity-0 stagger-1 flex flex-col items-center gap-4 mb-5" style={{ animationFillMode: 'forwards' }}>
+          <span className="font-pixel inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-1.5 text-sm text-foreground">
+            <span className="rec-dot" aria-hidden="true" />
+            EXPEDIENTE <span className="tabular-nums">{clock}</span>
+          </span>
+          <p className="font-pixel text-primary uppercase text-sm">&gt; automação &amp; IA aplicada_</p>
         </div>
-        
-        <h1 className="animate-slide-up opacity-0 stagger-1 text-5xl md:text-7xl lg:text-8xl font-bold mb-6" style={{ animationFillMode: 'forwards' }}>
+
+        <h1 className="animate-slide-up opacity-0 stagger-1 text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6" style={{ animationFillMode: 'forwards' }}>
           <span className="gradient-text">Hallysson</span>
           <span className="text-foreground"> Correia</span>
         </h1>
-        
-        <div className="animate-slide-up opacity-0 stagger-2" style={{ animationFillMode: 'forwards' }}>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Transformo processos complexos em{' '}
-            <span className="text-primary font-semibold">soluções inteligentes</span>{' '}
-            através de automações e Inteligência Artificial
-          </p>
-        </div>
-        
-        <div className="animate-slide-up opacity-0 stagger-3" style={{ animationFillMode: 'forwards' }}>
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full">
-              <Zap className="w-4 h-4 text-primary" />
-              <span className="text-muted-foreground text-sm">Automação de Processos</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full">
-              <Bot className="w-4 h-4 text-accent" />
-              <span className="text-muted-foreground text-sm">Agentes de IA</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span className="text-muted-foreground text-sm">Integrações Inteligentes</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className="animate-slide-up opacity-0 stagger-4 flex flex-col sm:flex-row gap-4 justify-center mb-12" style={{ animationFillMode: 'forwards' }}>
-          <Button 
-            size="lg" 
+
+        <p
+          className="animate-slide-up opacity-0 stagger-2 text-lg md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto"
+          style={{ animationFillMode: 'forwards' }}
+        >
+          Automatizo o trabalho repetitivo da sua empresa e coloco{' '}
+          <span className="text-foreground font-semibold">sites, sistemas e agentes de IA</span> no ar, do
+          protótipo ao deploy.
+        </p>
+
+        <div
+          className="animate-slide-up opacity-0 stagger-3 flex flex-col sm:flex-row gap-4 justify-center mb-10"
+          style={{ animationFillMode: 'forwards' }}
+        >
+          <Button
+            size="lg"
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-full glow"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => scrollTo('projects')}
           >
-            Vamos Automatizar
+            Ver projetos no ar <ArrowRight className="w-5 h-5 ml-1" />
           </Button>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="border-border text-muted-foreground hover:bg-secondary px-8 py-6 text-lg rounded-full"
-            onClick={() => document.getElementById('automation')?.scrollIntoView({ behavior: 'smooth' })}
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-primary/40 text-foreground hover:bg-primary/10 px-8 py-6 text-lg rounded-full"
           >
-            Ver Soluções de IA
+            <a href="/solicitar">Solicitar serviço</a>
           </Button>
         </div>
-        
-        <div className="animate-slide-up opacity-0 stagger-5 flex justify-center gap-6" style={{ animationFillMode: 'forwards' }}>
-          <a 
-            href="https://github.com/HallyCorreia" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"
-            aria-label="Visitar GitHub de Hallysson Correia"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          <a 
-            href="https://www.linkedin.com/in/hallysson-correia-722965218" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"
-            aria-label="Visitar LinkedIn de Hallysson Correia"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a 
-            href="mailto:hallysson.correia@email.com" 
-            className="w-12 h-12 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary transition-all duration-300"
-            aria-label="Enviar email para Hallysson Correia"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
+
+        <div className="animate-slide-up opacity-0 stagger-4 flex justify-center gap-4" style={{ animationFillMode: 'forwards' }}>
+          {socials.map(({ href, label, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full bg-secondary/60 flex items-center justify-center text-muted-foreground hover:text-primary-foreground hover:bg-primary transition-colors"
+              aria-label={`${label} de Hallysson Correia`}
+            >
+              <Icon className="w-5 h-5" />
+            </a>
+          ))}
         </div>
       </div>
-      
-      <button 
-        onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors animate-bounce"
-        aria-label="Rolar para a seção Sobre"
+
+      <button
+        onClick={() => scrollTo('projects')}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors motion-safe:animate-bounce"
+        aria-label="Rolar para os projetos"
       >
         <ChevronDown className="w-8 h-8" />
       </button>
