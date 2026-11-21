@@ -29,8 +29,8 @@ const reels: { id: string; serie: Serie; data: string; title: string }[] = [
 ];
 
 export function Bastidores() {
-  const [filtro, setFiltro] = useState<Serie | 'todos'>('todos');
-  const lista = filtro === 'todos' ? reels : reels.filter((r) => r.serie === filtro);
+  // Filtro por série removido por enquanto (volta quando houver mais vídeos por série).
+  const lista = reels;
 
   // Carrossel: 4 cards por vez no desktop, rola de página em página.
   const trilhoRef = useRef<HTMLDivElement>(null);
@@ -56,7 +56,7 @@ export function Bastidores() {
       t.removeEventListener('scroll', medir);
       window.removeEventListener('resize', medir);
     };
-  }, [filtro, medir]);
+  }, [medir]);
 
   const irPara = (p: number) => {
     const t = trilhoRef.current;
@@ -65,11 +65,6 @@ export function Bastidores() {
     t.scrollTo({ left: p * t.clientWidth, behavior: reduz ? 'auto' : 'smooth' });
   };
   const nomeSerie = (id: Serie) => series.find((s) => s.id === id)?.label ?? '';
-
-  const tabs: { id: Serie | 'todos'; label: string; n: number }[] = [
-    { id: 'todos', label: 'Todos', n: reels.length },
-    ...series.map((s) => ({ id: s.id, label: s.label, n: reels.filter((r) => r.serie === s.id).length })),
-  ];
 
   return (
     <section id="bastidores" className="py-24 relative">
@@ -115,30 +110,7 @@ export function Bastidores() {
           ))}
         </div>
 
-        {/* Filtro */}
-        <div role="tablist" aria-label="Filtrar vídeos por série" className="flex gap-2 overflow-x-auto pb-2 mb-6 -mx-1 px-1">
-          {tabs.map((t) => {
-            const ativo = filtro === t.id;
-            return (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={ativo}
-                onClick={() => setFiltro(t.id)}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium border transition-all duration-300 ${
-                  ativo
-                    ? 'bg-primary text-primary-foreground border-primary shadow-[0_0_20px_hsl(var(--primary)/0.35)]'
-                    : 'border-border text-muted-foreground hover:text-primary hover:border-primary/40'
-                }`}
-              >
-                {t.label} <span className={ativo ? 'opacity-70' : 'opacity-60'}>{t.n}</span>
-              </button>
-            );
-          })}
-        </div>
-
         <div
-          key={filtro}
           ref={trilhoRef}
           className="reel-trilho"
           aria-roledescription="carrossel"

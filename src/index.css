@@ -459,3 +459,12 @@
 }
 @media (min-width: 640px) { .reel-trilho { --por-vez: 2; } }
 @media (min-width: 1024px) { .reel-trilho { --por-vez: 4; } }
+
+/* Terminal escondido na logo */
+.term-cursor { animation: term-blink 1s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+.term-pop { animation: term-pop 0.18s ease-out; transform-origin: top left; }
+@keyframes term-pop { from { opacity: 0; transform: translateY(-6px) scale(0.97); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .term-cursor, .term-pop { animation: none; }
+}

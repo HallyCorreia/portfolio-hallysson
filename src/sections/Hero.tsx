@@ -3,6 +3,7 @@ import { ChevronDown, Github, Linkedin, Instagram, ArrowRight } from 'lucide-rea
 import { Button } from '@/components/ui/button';
 import { site } from '@/config/site';
 import { TikTokIcon } from '@/components/TikTokIcon';
+import { TypedTagline } from '@/components/TypedTagline';
 
 const formatClock = (d: Date) => d.toLocaleTimeString('pt-BR', { hour12: false });
 
@@ -122,7 +123,7 @@ export function Hero() {
             <span className="rec-dot" aria-hidden="true" />
             EXPEDIENTE <span className="tabular-nums">{clock}</span>
           </span>
-          <p className="font-pixel text-primary uppercase text-sm">&gt; automação &amp; IA aplicada_</p>
+          <TypedTagline />
         </div>
 
         <h1 className="animate-slide-up opacity-0 stagger-1 text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6" style={{ animationFillMode: 'forwards' }}>
@@ -131,12 +132,23 @@ export function Hero() {
         </h1>
 
         <p
-          className="animate-slide-up opacity-0 stagger-2 text-lg md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto"
+          className="animate-slide-up opacity-0 stagger-2 text-lg md:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto leading-relaxed"
           style={{ animationFillMode: 'forwards' }}
         >
-          Automatizo o trabalho repetitivo da sua empresa e coloco{' '}
-          <span className="text-foreground font-semibold">sites, sistemas e agentes de IA</span> no ar, do
-          protótipo ao deploy.
+          Desenho a arquitetura e escrevo o código de{' '}
+          <span className="text-foreground font-semibold">sistemas, sites e agentes de IA</span> que aguentam uso
+          real, do protótipo ao deploy.
+        </p>
+
+        <p
+          className="animate-slide-up opacity-0 stagger-2 font-pixel text-xs md:text-sm text-muted-foreground/80 mb-10 flex flex-wrap justify-center gap-x-3 gap-y-1"
+          style={{ animationFillMode: 'forwards' }}
+        >
+          <span>full stack na Marvee</span>
+          <span className="text-primary" aria-hidden="true">·</span>
+          <span>criador do Ninchoo, SaaS no ar</span>
+          <span className="text-primary" aria-hidden="true">·</span>
+          <span>Blumenau/SC</span>
         </p>
 
         <div

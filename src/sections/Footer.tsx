@@ -21,7 +21,7 @@ export function Footer() {
             <p className="text-2xl font-extrabold gradient-text" style={{ fontFamily: 'var(--font-display, inherit)' }}>
               {site.name}
             </p>
-            <p className="font-pixel text-muted-foreground text-xs mt-1">&gt; automação &amp; IA aplicada_</p>
+            <p className="font-pixel text-muted-foreground text-xs mt-1">&gt; engenharia &amp; arquitetura de software_</p>
           </div>
 
           <nav className="flex flex-wrap justify-center gap-6" aria-label="Rodapé">

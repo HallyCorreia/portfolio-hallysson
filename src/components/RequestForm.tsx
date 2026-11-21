@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Workflow, Bot, LayoutDashboard, Lightbulb, HelpCircle, Send, Check, Copy } from 'lucide-react';
+import { Workflow, Bot, LayoutDashboard, Lightbulb, HelpCircle, Send, Check, Copy, Ticket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -38,7 +38,7 @@ type FormData = z.infer<typeof schema>;
 
 type Props = {
   /** Tipo de serviço já escolhido (ex.: vindo de ?tipo= na URL). */
-  initial?: { service?: ServiceTypeId; ref: string };
+  initial?: { service?: ServiceTypeId; ref: string; cupom?: string };
   /** Prefixo dos ids dos campos, para não repetir id quando há dois formulários na página. */
   idPrefix?: string;
   /**
@@ -74,6 +74,7 @@ export function RequestForm({ initial = { ref: '' }, idPrefix = 'req', aside }: 
       '',
       `Tipo: ${tipo}`,
       initial.ref ? `Referência: projeto ${initial.ref}` : '',
+      initial.cupom ? `Cupom: ${initial.cupom} (até 10% de desconto, achado no terminal do site)` : '',
       `Nome: ${d.name}`,
       d.company ? `Empresa: ${d.company}` : '',
       `E-mail: ${d.email}`,
@@ -249,6 +250,17 @@ export function RequestForm({ initial = { ref: '' }, idPrefix = 'req', aside }: 
           </div>
         </fieldset>
   
+        {initial.cupom && (
+          <div className="flex items-start gap-3 rounded-xl border border-primary/50 bg-primary/10 px-4 py-3" role="note">
+            <Ticket className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+            <p className="text-sm text-muted-foreground">
+              <span className="font-pixel text-foreground">{initial.cupom}</span> aplicado: até{' '}
+              <strong className="text-foreground">10% de desconto</strong> no seu projeto. O cupom já vai junto na
+              mensagem.
+            </p>
+          </div>
+        )}
+
         <div className="flex flex-col sm:flex-row gap-3 items-start">
           <Button type="submit" size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 glow">
             <Send className="w-4 h-4 mr-2" />
