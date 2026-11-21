@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { TerminalLogo } from '@/components/TerminalLogo';
 
 const navLinks = [
   { label: 'Projetos', href: '#projects' },
@@ -61,20 +62,8 @@ export function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a 
-              href="#" 
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="flex items-center gap-2"
-              aria-label="Ir para o início"
-            >
-              <span className="text-xl font-bold gradient-text">HC</span>
-              <span className="hidden sm:inline text-muted-foreground text-sm">|</span>
-              <span className="hidden sm:inline font-pixel text-primary text-sm">&gt; automação_</span>
-            </a>
+            {/* Logo (o ">" abre o terminal escondido) */}
+            <TerminalLogo />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-6">
