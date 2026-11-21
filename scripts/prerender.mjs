@@ -31,6 +31,14 @@ const routes = [
     priority: '0.7',
   },
   {
+    // Destino do ./desconto.sh do terminal. Fora do Google: só quem acha o easter egg chega aqui.
+    path: '/cupom',
+    file: 'cupom.html',
+    title: 'Você achou o cupom | Hallysson Correia',
+    description: 'Cupom do terminal escondido no portfólio de Hallysson Correia, aplicado no pedido de orçamento.',
+    noindex: true,
+  },
+  {
     path: '/404',
     file: '404.html',
     title: 'Página não encontrada | Hallysson Correia',

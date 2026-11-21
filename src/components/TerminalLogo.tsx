@@ -1,7 +1,7 @@
 // Logo "HC | >_" com easter egg: o ">" abre um mini terminal com comandos clicáveis.
 import { useEffect, useRef, useState } from 'react';
 import { site } from '@/config/site';
-import { CUPOM_TERMINAL } from '@/lib/requestQuery';
+import { CUPOM_TERMINAL, ROTA_CUPOM, cupomInfo } from '@/lib/requestQuery';
 
 type Linha = { tipo: 'cmd' | 'out'; texto: string };
 
@@ -31,10 +31,10 @@ const comandos: Comando[] = [
     cmd: './desconto.sh',
     saida: [
       'procurando cupons escondidos… 1 encontrado 🎟️',
-      `${CUPOM_TERMINAL}: até 10% de desconto no seu projeto`,
+      `${CUPOM_TERMINAL}: ${cupomInfo.beneficio} no seu projeto`,
       'aplicando no pedido de orçamento…',
     ],
-    acao: () => window.location.assign(`/solicitar?cupom=${CUPOM_TERMINAL}`),
+    acao: () => window.location.assign(ROTA_CUPOM),
   },
   {
     cmd: 'sudo contratar',
@@ -109,7 +109,7 @@ export function TerminalLogo() {
       <button
         type="button"
         onClick={() => setAberto((v) => !v)}
-        className={`hidden sm:inline-flex items-center font-pixel text-sm rounded px-1.5 py-0.5 transition-colors ${
+        className={`inline-flex items-center font-pixel text-sm rounded min-h-10 sm:min-h-0 px-2 sm:px-1.5 sm:py-0.5 transition-colors ${
           aberto ? 'bg-primary/20 text-foreground' : 'text-primary hover:bg-primary/10'
         }`}
         aria-expanded={aberto}
@@ -118,7 +118,7 @@ export function TerminalLogo() {
         title="psst… clica aqui"
       >
         <span className="term-prompt">&gt;</span>
-        <span className="ml-1">engenharia</span>
+        <span className="ml-1 hidden sm:inline">engenharia</span>
         <span className="term-cursor" aria-hidden="true">_</span>
       </button>
 
