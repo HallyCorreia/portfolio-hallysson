@@ -22,6 +22,10 @@ export function Footer() {
               {site.name}
             </p>
             <p className="font-pixel text-muted-foreground text-xs mt-1">&gt; engenharia &amp; arquitetura de software_</p>
+            {/* Dica do easter egg: aponta para o terminal sem contar o que tem lá. */}
+            <p className="font-pixel text-muted-foreground/70 text-[11px] mt-2">
+              // psst: o <span className="text-primary">&gt;</span> lá no topo não é só enfeite
+            </p>
           </div>
 
           <nav className="flex flex-wrap justify-center gap-6" aria-label="Rodapé">

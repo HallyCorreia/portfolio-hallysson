@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { site, mailtoUrl, whatsappUrl } from '@/config/site';
 import { serviceTypes, type ServiceTypeId } from '@/config/services';
+import { ROTA_CUPOM, cupomInfo } from '@/lib/requestQuery';
 
 const icons: Record<ServiceTypeId, typeof Workflow> = {
   automation: Workflow,
@@ -74,7 +75,7 @@ export function RequestForm({ initial = { ref: '' }, idPrefix = 'req', aside }: 
       '',
       `Tipo: ${tipo}`,
       initial.ref ? `Referência: projeto ${initial.ref}` : '',
-      initial.cupom ? `Cupom: ${initial.cupom} (até 10% de desconto, achado no terminal do site)` : '',
+      initial.cupom ? `Cupom: ${initial.cupom} (${cupomInfo.beneficio}, achado no terminal do site)` : '',
       `Nome: ${d.name}`,
       d.company ? `Empresa: ${d.company}` : '',
       `E-mail: ${d.email}`,
@@ -94,12 +95,29 @@ export function RequestForm({ initial = { ref: '' }, idPrefix = 'req', aside }: 
     return `Solicitação: ${tipo} · ${d.name}`;
   };
 
+  // Sem backend nem eventos no Cloudflare Web Analytics: o envio vira uma "página" virtual
+  // (/cupom/enviado ou /solicitar/enviado), que o beacon conta como troca de rota de SPA.
+  const marcarEnvio = () => {
+    const base = initial.cupom ? ROTA_CUPOM : '/solicitar';
+    if (!window.location.pathname.endsWith('/enviado')) {
+      window.history.pushState({ origem: window.location.pathname + window.location.search }, '', `${base}/enviado`);
+    }
+  };
+
+  const voltarAoFormulario = () => {
+    const origem = (window.history.state as { origem?: string } | null)?.origem;
+    if (origem) window.history.replaceState(null, '', origem);
+    setSent(null);
+  };
+
   const sendEmail = (d: FormData) => {
+    marcarEnvio();
     window.location.assign(mailtoUrl(subjectFor(d), buildBody(d)));
     setSent('email');
   };
 
   const sendWhatsapp = (d: FormData) => {
+    marcarEnvio();
     window.open(whatsappUrl(buildBody(d)), '_blank', 'noopener,noreferrer');
     setSent('whatsapp');
   };
@@ -140,7 +158,7 @@ export function RequestForm({ initial = { ref: '' }, idPrefix = 'req', aside }: 
             {copied ? <Check className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
             {copied ? 'E-mail copiado' : 'Copiar e-mail'}
           </Button>
-          <Button type="button" variant="ghost" className="rounded-full" onClick={() => setSent(null)}>
+          <Button type="button" variant="ghost" className="rounded-full" onClick={voltarAoFormulario}>
             Voltar ao formulário
           </Button>
         </div>
@@ -254,9 +272,9 @@ export function RequestForm({ initial = { ref: '' }, idPrefix = 'req', aside }: 
           <div className="flex items-start gap-3 rounded-xl border border-primary/50 bg-primary/10 px-4 py-3" role="note">
             <Ticket className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
             <p className="text-sm text-muted-foreground">
-              <span className="font-pixel text-foreground">{initial.cupom}</span> aplicado: até{' '}
-              <strong className="text-foreground">10% de desconto</strong> no seu projeto. O cupom já vai junto na
-              mensagem.
+              <span className="font-pixel text-foreground">{initial.cupom}</span> aplicado:{' '}
+              <strong className="text-foreground">{cupomInfo.beneficio}</strong> no seu projeto. O cupom já vai junto na
+              mensagem. {cupomInfo.aviso}
             </p>
           </div>
         )}

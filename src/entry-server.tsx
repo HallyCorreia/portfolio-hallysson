@@ -4,12 +4,13 @@ import { renderToString } from 'react-dom/server';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import App from './App';
 import { RequestPage } from './pages/RequestPage';
+import { paginaDe } from './lib/requestQuery';
 
 export function render(path: string) {
-  const Page = path === '/solicitar' ? RequestPage : App;
+  const pagina = paginaDe(path);
   return renderToString(
     <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-      <Page />
+      {pagina === 'home' ? <App /> : <RequestPage cupom={pagina === 'cupom'} />}
     </ThemeProvider>,
   );
 }

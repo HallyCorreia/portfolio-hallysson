@@ -3,6 +3,7 @@ import { Mail, MapPin, Linkedin, Github, Instagram, MessageCircle, Copy, Check }
 import { RequestForm } from '@/components/RequestForm';
 import { site, whatsappUrl } from '@/config/site';
 import { TikTokIcon } from '@/components/TikTokIcon';
+import { cupomSalvo } from '@/lib/requestQuery';
 
 const socialLinks = [
   { icon: Linkedin, label: 'LinkedIn', href: site.social.linkedin },
@@ -13,6 +14,8 @@ const socialLinks = [
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
+  // Se a pessoa achou o cupom do terminal nesta aba, ele segue junto no formulário daqui.
+  const [initial] = useState(() => ({ ref: '', cupom: cupomSalvo() }));
   const hasWhatsapp = Boolean(site.whatsapp);
 
   const copyEmail = async () => {
@@ -41,6 +44,7 @@ export function Contact() {
 
         <RequestForm
           idPrefix="contato"
+          initial={initial}
           aside={
             <>
                 <div className="rounded-2xl border border-border bg-card/50 p-6 space-y-5">
