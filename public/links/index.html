@@ -69,6 +69,9 @@ body::after { bottom: -30vmax; right: -30vmax; background: rgba(224, 92, 255, .1
 .tema .reserva { visibility: hidden; }
 .cursor { font-family: var(--pixel); font-weight: 400; margin-left: 1px; animation: pisca 1s steps(2) infinite; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ico.podcast { background: #FF0000; }
+.campanha { border: 2px solid #FF0000; }
+.campanha .selo { background: #FFE5E5; color: #B00000; }
 .rotulo { margin: 0; font-family: var(--pixel); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
 .topo .rotulo { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 8px; background: rgba(23, 16, 36, .75); color: #F3F1F8; }
 .rec { width: 8px; height: 8px; border-radius: 50%; background: #22E07A; box-shadow: 0 0 0 3px rgba(34,224,122,.25), 0 0 10px rgba(34,224,122,.9); animation: pisca 1.2s steps(2) infinite; }
@@ -144,6 +147,14 @@ body::after { bottom: -30vmax; right: -30vmax; background: rgba(224, 92, 255, .1
   </header>
 
   <main class="lista">
+    <!-- Campanha temporária (desafio Criativos SA, até o fim de nov/2026): remover depois -->
+    <a class="item campanha" href="https://youtube.com/@criativos.podcast" target="_blank" rel="noopener" style="--i:0">
+      <span class="ico podcast" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.75 15.02V8.98L15.5 12l-5.75 3.02Z"/></svg>
+      </span>
+      <span class="item-texto"><b>Podcast Criativos SA</b><small>Me ajuda: 1.000 inscritos até o fim do mês</small></span>
+      <span class="selo">Inscreva-se</span>
+    </a>
     <a class="item destaque" href="/" style="--i:0">
       <span class="destaque-topo">
         <span class="ico portfolio" aria-hidden="true">
